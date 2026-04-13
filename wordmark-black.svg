@@ -1,0 +1,51 @@
+<svg viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg" width="680" height="160">
+  <rect width="680" height="160" fill="#060606"/>
+
+  <!-- E -->
+  <polygon points="190,35 200,35 200,105 190,105" fill="#D8D8D8"/>
+  <polygon points="200,35 228,35 224,46 200,46" fill="#D8D8D8"/>
+  <polygon points="200,64 224,64 220,75 200,75" fill="#D8D8D8"/>
+  <polygon points="200,94 228,94 224,105 200,105" fill="#D8D8D8"/>
+  <!-- Black caliper slash (was gold) -->
+  <polygon points="197,60 204,60 207,75 200,75" fill="#060606"/>
+
+  <!-- N -->
+  <polygon points="234,35 244,35 244,105 234,105" fill="#D8D8D8"/>
+  <polygon points="262,35 272,35 272,105 262,105" fill="#D8D8D8"/>
+  <polygon points="244,35 255,35 262,105 251,105" fill="#D8D8D8"/>
+
+  <!-- I -->
+  <polygon points="278,35 289,35 289,105 278,105" fill="#D8D8D8"/>
+
+  <!-- C -->
+  <polygon points="295,35 305,35 305,105 295,105" fill="#D8D8D8"/>
+  <polygon points="305,35 329,35 325,46 305,46" fill="#D8D8D8"/>
+  <polygon points="305,94 329,94 325,105 305,105" fill="#D8D8D8"/>
+
+  <!-- I -->
+  <polygon points="335,35 346,35 346,105 335,105" fill="#D8D8D8"/>
+
+  <!-- L -->
+  <polygon points="352,35 362,35 362,105 352,105" fill="#D8D8D8"/>
+  <polygon points="362,94 388,94 384,105 362,105" fill="#D8D8D8"/>
+
+  <!-- I -->
+  <polygon points="394,35 405,35 405,105 394,105" fill="#D8D8D8"/>
+
+  <!-- O -->
+  <polygon points="411,35 421,35 421,105 411,105" fill="#D8D8D8"/>
+  <polygon points="445,35 455,35 455,105 445,105" fill="#D8D8D8"/>
+  <polygon points="421,35 445,35 441,46 421,46" fill="#D8D8D8"/>
+  <polygon points="421,94 445,94 441,105 421,105" fill="#D8D8D8"/>
+
+  <!-- N -->
+  <polygon points="461,35 471,35 471,105 461,105" fill="#D8D8D8"/>
+  <polygon points="489,35 499,35 499,105 489,105" fill="#D8D8D8"/>
+  <polygon points="471,35 482,35 489,105 478,105" fill="#D8D8D8"/>
+
+  <!-- Underline rule -->
+  <line x1="190" y1="113" x2="499" y2="113" stroke="#1E1E1E" stroke-width="0.6"/>
+
+  <!-- Tagline -->
+  <text x="190" y="127" font-family="'Helvetica Neue',Arial,sans-serif" font-size="8" fill="#2A2A2A" letter-spacing="3">ENICILION EXPERIENCE PVT. LTD.</text>
+</svg>
