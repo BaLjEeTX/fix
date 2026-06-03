@@ -16,9 +16,7 @@
 
     <title>ENICILION • OWN THE NIGHT</title>
     
-    <!-- Payment SDKs -->
-    <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- Payment SDKs are loaded dynamically on demand during checkout -->
 
     <style>
       /* Critical CSS for immediate rendering */
@@ -86,8 +84,8 @@
         }
       }
     </style>
-    <script type="module" crossorigin src="/assets/index-ClR-9b3X.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CS_HdOWT.css">
+    <script type="module" crossorigin src="/assets/index-DiRQ8Z43.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-md9202Yt.css">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
   </head>
   <body class="no-js">
@@ -197,5 +195,38 @@
       gtag('js', new Date());
       gtag('config', 'G-C55P8VR4XR');
     </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '926907373662305');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=926907373662305&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Snap Pixel Code -->
+    <script type='text/javascript'>
+      (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
+      {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
+      a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
+      r.src=n;var u=t.getElementsByTagName(s)[0];
+      u.parentNode.insertBefore(r,u);})(window,document,
+      'https://sc-static.net/scevent.min.js');
+
+      snaptr('init', 'f1a84f3e-63f4-4a41-8664-57d425c11d4d');
+      snaptr('track', 'PAGE_VIEW');
+    </script>
+    <!-- End Snap Pixel Code -->
+
   </body>
 </html>
