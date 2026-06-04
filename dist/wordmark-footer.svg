@@ -1,0 +1,49 @@
+<svg viewBox="180 30 330 110" xmlns="http://www.w3.org/2000/svg">
+  <!-- E -->
+  <polygon points="190,35 200,35 200,105 190,105" fill="#fff"/>
+  <polygon points="200,35 228,35 224,46 200,46" fill="#fff"/>
+  <polygon points="200,64 224,64 220,75 200,75" fill="#fff"/>
+  <polygon points="200,94 228,94 224,105 200,105" fill="#fff"/>
+  <!-- Caliper slash -->
+  <polygon points="197,60 204,60 207,75 200,75" fill="#ff0033"/>
+
+  <!-- N -->
+  <polygon points="234,35 244,35 244,105 234,105" fill="#fff"/>
+  <polygon points="262,35 272,35 272,105 262,105" fill="#fff"/>
+  <polygon points="244,35 255,35 262,105 251,105" fill="#fff"/>
+
+  <!-- I -->
+  <polygon points="278,35 289,35 289,105 278,105" fill="#fff"/>
+
+  <!-- C -->
+  <polygon points="295,35 305,35 305,105 295,105" fill="#fff"/>
+  <polygon points="305,35 329,35 325,46 305,46" fill="#fff"/>
+  <polygon points="305,94 329,94 325,105 305,105" fill="#fff"/>
+
+  <!-- I -->
+  <polygon points="335,35 346,35 346,105 335,105" fill="#fff"/>
+
+  <!-- L -->
+  <polygon points="352,35 362,35 362,105 352,105" fill="#fff"/>
+  <polygon points="362,94 388,94 384,105 362,105" fill="#fff"/>
+
+  <!-- I -->
+  <polygon points="394,35 405,35 405,105 394,105" fill="#fff"/>
+
+  <!-- O -->
+  <polygon points="411,35 421,35 421,105 411,105" fill="#fff"/>
+  <polygon points="445,35 455,35 455,105 445,105" fill="#fff"/>
+  <polygon points="421,35 445,35 441,46 421,46" fill="#fff"/>
+  <polygon points="421,94 445,94 441,105 421,105" fill="#fff"/>
+
+  <!-- N -->
+  <polygon points="461,35 471,35 471,105 461,105" fill="#fff"/>
+  <polygon points="489,35 499,35 499,105 489,105" fill="#fff"/>
+  <polygon points="471,35 482,35 489,105 478,105" fill="#fff"/>
+
+  <!-- Underline rule -->
+  <line x1="190" y1="113" x2="499" y2="113" stroke="#ff0033" stroke-width="1"/>
+
+  <!-- Tagline -->
+  <text x="190" y="130" font-family="monospace" font-size="7" fill="#888" letter-spacing="2">ENICILION EXPERIENCE PVT. LTD.</text>
+</svg>

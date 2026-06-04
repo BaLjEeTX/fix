@@ -1,0 +1,1320 @@
+/* ENICILION OPS UI POLISH - static CSS only. No business logic changes. */
+:root {
+  --ops-bg: #050505;
+  --ops-panel: #0b0b0b;
+  --ops-panel-2: #101010;
+  --ops-line: #242018;
+  --ops-line-soft: #181818;
+  --ops-gold: #f5a623;
+  --ops-gold-soft: rgba(245, 166, 35, .12);
+  --ops-gold-line: rgba(245, 166, 35, .28);
+  --ops-text: #f5f1e8;
+  --ops-muted: #aaa49a;
+  --ops-dim: #706b62;
+  --ops-radius: 14px;
+  --ops-topbar: 72px;
+  --ops-sidebar: 272px;
+  --ops-shadow: 0 18px 42px rgba(0, 0, 0, .28);
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  background: var(--ops-bg) !important;
+  color: var(--ops-text);
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% -12%, rgba(245, 166, 35, .065), transparent 34%),
+    linear-gradient(180deg, #080808 0%, #050505 48%, #070707 100%) !important;
+}
+
+#root > .flex.h-screen {
+  height: 100dvh;
+  background: transparent !important;
+}
+
+#root .max-w-screen-2xl {
+  max-width: 1480px;
+}
+
+#root main.flex-1.overflow-y-auto {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .012), transparent 180px);
+}
+
+#root main > .p-4 {
+  padding: 22px !important;
+}
+
+@media (min-width: 1024px) {
+  #root main > .lg\:p-6 {
+    padding: 30px !important;
+  }
+}
+
+#root .hidden.lg\:flex > .flex-col,
+#root .fixed.inset-0 .relative.z-10 > .flex-col {
+  width: var(--ops-sidebar) !important;
+  background: linear-gradient(180deg, #090909, #060606) !important;
+  border-right: 1px solid var(--ops-line) !important;
+  box-shadow: 12px 0 34px rgba(0, 0, 0, .22);
+}
+
+#root .w-\[52px\].flex-col {
+  width: 64px !important;
+}
+
+#root .w-64.flex-col {
+  width: var(--ops-sidebar) !important;
+}
+
+#root nav {
+  padding: 16px 12px !important;
+}
+
+#root nav button {
+  min-height: 42px;
+  border-radius: 12px !important;
+  margin-bottom: 3px;
+}
+
+#root nav button[style*="rgba(255,0,51"],
+#root nav button[style*="rgba(255, 0, 51"] {
+  background: linear-gradient(90deg, var(--ops-gold-soft), rgba(245, 166, 35, .045)) !important;
+  border-color: var(--ops-gold-line) !important;
+  box-shadow: inset 3px 0 0 var(--ops-gold);
+}
+
+#root nav button[style*="rgba(255,0,51"] svg,
+#root nav button[style*="rgba(255, 0, 51"] svg {
+  color: var(--ops-gold) !important;
+}
+
+#root nav p.text-\[8px\] {
+  color: #6d6254 !important;
+  letter-spacing: .22em;
+}
+
+#root header {
+  min-height: var(--ops-topbar);
+  padding: 14px 24px !important;
+  background: rgba(8, 8, 8, .92) !important;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--ops-line) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .18);
+}
+
+#root header button {
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 12px !important;
+}
+
+#root header .w-8.h-8 {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 12px !important;
+}
+
+#root .font-\[\'Teko\'\] {
+  letter-spacing: .075em !important;
+  color: var(--ops-text) !important;
+}
+
+#root .font-\[\'Teko\'\].text-3xl {
+  font-size: 42px !important;
+  line-height: .95 !important;
+  text-transform: uppercase;
+}
+
+#root .text-\[10px\],
+#root .text-\[9px\],
+#root .text-\[8px\] {
+  letter-spacing: .14em;
+}
+
+#root .text-\[\#555\] {
+  color: var(--ops-dim) !important;
+}
+
+#root .text-\[\#777\],
+#root .text-\[\#888\],
+#root .text-\[\#999\] {
+  color: var(--ops-muted) !important;
+}
+
+#root .rounded-xl,
+#root .rounded-2xl,
+#root .rounded-lg {
+  border-radius: var(--ops-radius) !important;
+}
+
+#root [style*="background:#0c0c0c"],
+#root [style*="background: #0c0c0c"],
+#root [style*="background:#111"],
+#root [style*="background: #111"],
+#root [style*="background:#080808"],
+#root [style*="background: #080808"] {
+  background: linear-gradient(180deg, var(--ops-panel-2), var(--ops-panel)) !important;
+}
+
+#root .border-\[\#111\],
+#root .border-\[\#1a1a1a\],
+#root .border-\[\#222\],
+#root .border-\[\#2a2a2a\],
+#root .border-\[\#333\] {
+  border-color: var(--ops-line) !important;
+}
+
+#root .grid > .rounded-xl,
+#root .grid > .rounded-2xl,
+#root .space-y-5 > .rounded-xl,
+#root .space-y-4 > .rounded-xl {
+  border: 1px solid var(--ops-line) !important;
+  background: linear-gradient(180deg, var(--ops-panel-2), #090909) !important;
+  box-shadow: var(--ops-shadow);
+}
+
+#root .grid > .rounded-xl:hover,
+#root .grid > .rounded-2xl:hover {
+  border-color: var(--ops-gold-line) !important;
+}
+
+#root button,
+#root a,
+#root input,
+#root select,
+#root textarea {
+  max-width: 100%;
+}
+
+#root button {
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease, transform .16s ease, box-shadow .16s ease;
+}
+
+#root button:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+#root button[class*="bg-[#ff0033]"],
+#root button[style*="background:#ff0033"],
+#root button[style*="background: #ff0033"] {
+  background: linear-gradient(180deg, #f8bd56, var(--ops-gold)) !important;
+  color: #0b0b0b !important;
+  border-color: rgba(245, 166, 35, .55) !important;
+  box-shadow: 0 10px 22px rgba(245, 166, 35, .16) !important;
+}
+
+#root .text-\[\#ff0033\],
+#root .hover\:text-\[\#ff0033\]:hover,
+#root .focus\:border-\[\#ff0033\]:focus {
+  color: var(--ops-gold) !important;
+  border-color: var(--ops-gold) !important;
+}
+
+#root .bg-\[\#ff0033\],
+#root .hover\:bg-\[\#cc0029\]:hover {
+  background-color: var(--ops-gold) !important;
+  color: #0b0b0b !important;
+}
+
+#root .border-\[\#ff0033\],
+#root .hover\:border-\[\#ff0033\]:hover {
+  border-color: var(--ops-gold) !important;
+}
+
+#root input,
+#root select,
+#root textarea {
+  min-height: 42px;
+  border-radius: 12px !important;
+  background: #0a0a0a !important;
+  border-color: var(--ops-line) !important;
+  color: var(--ops-text) !important;
+}
+
+#root input:focus,
+#root select:focus,
+#root textarea:focus {
+  border-color: var(--ops-gold) !important;
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, .12);
+}
+
+#root input::placeholder,
+#root textarea::placeholder {
+  color: #655f56 !important;
+}
+
+#root table {
+  width: 100%;
+  border-collapse: separate !important;
+  border-spacing: 0;
+}
+
+#root thead tr {
+  background: #0f0f0f;
+}
+
+#root th,
+#root td {
+  vertical-align: middle;
+}
+
+#root th {
+  height: 46px !important;
+  padding: 13px 16px !important;
+  color: #8f877c !important;
+  font-size: 10px !important;
+  letter-spacing: .16em !important;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--ops-line) !important;
+}
+
+#root td {
+  min-height: 58px;
+  padding: 14px 16px !important;
+  border-bottom: 1px solid var(--ops-line-soft) !important;
+}
+
+#root tbody tr {
+  background: rgba(12, 12, 12, .62);
+  transition: background-color .16s ease;
+}
+
+#root tbody tr:hover {
+  background: rgba(245, 166, 35, .045) !important;
+}
+
+#root .overflow-x-auto {
+  border-radius: var(--ops-radius) !important;
+  border: 1px solid var(--ops-line) !important;
+  background: linear-gradient(180deg, var(--ops-panel-2), var(--ops-panel));
+  box-shadow: var(--ops-shadow);
+}
+
+#root .rounded-full,
+#root span.rounded,
+#root span.rounded-lg {
+  white-space: nowrap;
+}
+
+#root [class*="tracking-"][class*="uppercase"].rounded-full,
+#root [class*="tracking-"][class*="uppercase"].rounded-lg {
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-width: 1px !important;
+  font-weight: 800;
+}
+
+#root .text-\[\#f5a623\] {
+  color: var(--ops-gold) !important;
+}
+
+#root .bg-\[\#f5a623\]\/10,
+#root .bg-\[\#f5a623\]\/15 {
+  background-color: var(--ops-gold-soft) !important;
+}
+
+#root .border-\[\#f5a623\]\/25,
+#root .border-\[\#f5a623\]\/30,
+#root .border-\[\#f5a623\]\/40 {
+  border-color: var(--ops-gold-line) !important;
+}
+
+#root .aspect-video {
+  border-radius: 18px !important;
+  border: 1px solid var(--ops-line) !important;
+  background: radial-gradient(circle at center, rgba(245, 166, 35, .08), #080808 60%) !important;
+}
+
+#root .grid,
+#root .flex,
+#root .truncate {
+  min-width: 0;
+}
+
+@media (max-width: 1023px) {
+  #root > .flex.h-screen {
+    display: block;
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  #root .flex-1.flex.flex-col.overflow-hidden {
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  #root header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    min-height: 64px;
+    padding: 12px 14px !important;
+  }
+
+  #root main.flex-1.overflow-y-auto {
+    overflow: visible;
+  }
+
+  #root main > .p-4 {
+    padding: 16px 12px 86px !important;
+  }
+
+  #root .font-\[\'Teko\'\].text-3xl {
+    font-size: 34px !important;
+  }
+
+  #root .grid-cols-2,
+  #root .grid-cols-3,
+  #root .grid-cols-4,
+  #root .lg\:grid-cols-2,
+  #root .lg\:grid-cols-3,
+  #root .lg\:grid-cols-4,
+  #root .lg\:grid-cols-5,
+  #root .xl\:grid-cols-6 {
+    grid-template-columns: 1fr !important;
+  }
+
+  #root .sm\:grid-cols-2,
+  #root .sm\:grid-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  #root .col-span-2,
+  #root .lg\:col-span-2,
+  #root .lg\:col-span-3 {
+    grid-column: auto !important;
+  }
+
+  #root .space-y-5 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 18px !important;
+  }
+
+  #root .overflow-x-auto {
+    overflow: visible !important;
+  }
+
+  #root table,
+  #root thead,
+  #root tbody,
+  #root tr,
+  #root td {
+    display: block;
+    width: 100%;
+  }
+
+  #root thead {
+    display: none;
+  }
+
+  #root tbody tr {
+    margin: 0 0 12px;
+    padding: 12px;
+    border: 1px solid var(--ops-line) !important;
+    border-radius: var(--ops-radius) !important;
+    background: linear-gradient(180deg, var(--ops-panel-2), var(--ops-panel)) !important;
+  }
+
+  #root td {
+    border-bottom: 1px solid var(--ops-line-soft) !important;
+    padding: 10px 4px !important;
+    min-height: 0;
+  }
+
+  #root td:last-child {
+    border-bottom: 0 !important;
+  }
+
+  #root td .flex.gap-1,
+  #root td .flex.gap-2 {
+    flex-wrap: wrap;
+  }
+
+  #root td button {
+    min-height: 36px;
+    min-width: 36px;
+  }
+
+  #root input,
+  #root select,
+  #root textarea,
+  #root button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 430px) {
+  #root main > .p-4 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  #root header .gap-3 {
+    gap: 8px !important;
+  }
+
+  #root .p-6,
+  #root .p-5,
+  #root .p-4 {
+    padding: 14px !important;
+  }
+
+  #root .text-5xl {
+    font-size: 2.25rem !important;
+  }
+
+  #root .text-4xl {
+    font-size: 2rem !important;
+  }
+
+  #root .text-3xl {
+    font-size: 1.75rem !important;
+  }
+
+  #root .w-72 {
+    width: min(19rem, 86vw) !important;
+  }
+
+  #root .sm\:grid-cols-2,
+  #root .sm\:grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  #root .flex-col.sm\:flex-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+}
+
+/* Premium command-center refinement layer.
+   CSS-only: keeps the deployed React bundle, routes, data calls, and handlers intact. */
+:root {
+  --ops-page-pad: 30px;
+  --ops-card-pad: 20px;
+  --ops-radius-sm: 10px;
+  --ops-radius-lg: 18px;
+  --ops-control: 44px;
+  --ops-row: 62px;
+  --ops-ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+#root * {
+  box-sizing: border-box;
+}
+
+#root main {
+  color-scheme: dark;
+}
+
+#root main > div {
+  max-width: 1500px;
+  margin-inline: auto;
+}
+
+#root .gap-1 { gap: 6px !important; }
+#root .gap-2 { gap: 10px !important; }
+#root .gap-3 { gap: 14px !important; }
+#root .gap-4 { gap: 18px !important; }
+#root .gap-5 { gap: 22px !important; }
+#root .gap-6 { gap: 26px !important; }
+
+#root .space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 10px !important; }
+#root .space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 14px !important; }
+#root .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 18px !important; }
+#root .space-y-5 > :not([hidden]) ~ :not([hidden]) { margin-top: 22px !important; }
+#root .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 26px !important; }
+
+#root header > div,
+#root header .flex {
+  min-width: 0;
+}
+
+#root header p,
+#root header span {
+  line-height: 1.25;
+}
+
+#root header [class*="rounded-full"] {
+  min-height: 28px;
+  padding-inline: 10px !important;
+  border: 1px solid var(--ops-gold-line) !important;
+  background: rgba(245, 166, 35, .09) !important;
+}
+
+#root .hidden.lg\:flex,
+#root .hidden.lg\:flex > .flex-col {
+  flex: 0 0 var(--ops-sidebar) !important;
+}
+
+#root .hidden.lg\:flex > .flex-col > div:first-child {
+  min-height: var(--ops-topbar);
+  border-bottom: 1px solid var(--ops-line) !important;
+}
+
+#root nav button {
+  width: 100%;
+  justify-content: flex-start;
+  gap: 12px !important;
+  color: #d5cbbd !important;
+  border: 1px solid transparent !important;
+}
+
+#root nav button:hover {
+  background: rgba(245, 166, 35, .07) !important;
+  border-color: rgba(245, 166, 35, .16) !important;
+  color: var(--ops-text) !important;
+}
+
+#root nav button svg {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+}
+
+#root nav button span,
+#root nav button p {
+  min-width: 0;
+}
+
+#root main h1,
+#root main .font-\[\'Teko\'\].text-4xl,
+#root main .font-\[\'Teko\'\].text-5xl {
+  font-size: clamp(2.25rem, 3.4vw, 4.4rem) !important;
+  line-height: .86 !important;
+  text-transform: uppercase;
+  letter-spacing: .06em !important;
+  text-wrap: balance;
+}
+
+#root main h2,
+#root main h3 {
+  color: var(--ops-text) !important;
+}
+
+#root main label,
+#root main .uppercase,
+#root th {
+  letter-spacing: .15em !important;
+}
+
+#root main p {
+  color: inherit;
+}
+
+#root .grid > div,
+#root section,
+#root form,
+#root aside {
+  min-width: 0;
+}
+
+#root .rounded-xl.border,
+#root .rounded-2xl.border,
+#root .rounded-lg.border,
+#root [class*="border"][class*="rounded-xl"],
+#root [class*="border"][class*="rounded-2xl"] {
+  border-color: var(--ops-line) !important;
+  background: linear-gradient(180deg, rgba(18, 18, 18, .98), rgba(9, 9, 9, .98)) !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .24);
+}
+
+#root .rounded-xl.border:hover,
+#root .rounded-2xl.border:hover {
+  border-color: rgba(245, 166, 35, .24) !important;
+}
+
+#root .p-3 { padding: 14px !important; }
+#root .p-4 { padding: 18px !important; }
+#root .p-5 { padding: 20px !important; }
+#root .p-6 { padding: 24px !important; }
+
+#root .px-2 { padding-left: 10px !important; padding-right: 10px !important; }
+#root .px-3 { padding-left: 14px !important; padding-right: 14px !important; }
+#root .px-4 { padding-left: 18px !important; padding-right: 18px !important; }
+#root .py-2 { padding-top: 10px !important; padding-bottom: 10px !important; }
+#root .py-3 { padding-top: 13px !important; padding-bottom: 13px !important; }
+
+#root button,
+#root [role="button"] {
+  min-height: 38px;
+  border-radius: var(--ops-radius-sm) !important;
+  font-weight: 800;
+}
+
+#root button.p-1,
+#root button.p-2,
+#root td button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+}
+
+#root button svg {
+  flex: 0 0 auto;
+}
+
+#root button:disabled,
+#root [aria-disabled="true"] {
+  opacity: .5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+#root input,
+#root select,
+#root textarea {
+  min-height: var(--ops-control);
+  padding-inline: 14px !important;
+  outline: none !important;
+}
+
+#root textarea {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+#root select {
+  cursor: pointer;
+}
+
+#root input[type="checkbox"],
+#root input[type="radio"] {
+  min-height: auto;
+  accent-color: var(--ops-gold);
+}
+
+#root [class*="rounded-full"][class*="border"],
+#root [class*="rounded-lg"][class*="border"][class*="uppercase"],
+#root [class*="rounded-md"][class*="border"][class*="uppercase"] {
+  border-color: rgba(245, 166, 35, .22) !important;
+  background-color: rgba(245, 166, 35, .075) !important;
+}
+
+#root [class*="bg-green"],
+#root [class*="text-green"] {
+  filter: saturate(.92);
+}
+
+#root [class*="bg-red"],
+#root [class*="text-red"] {
+  filter: saturate(.9);
+}
+
+#root .overflow-x-auto table {
+  min-width: 760px;
+}
+
+#root th:first-child,
+#root td:first-child {
+  padding-left: 18px !important;
+}
+
+#root th:last-child,
+#root td:last-child {
+  padding-right: 18px !important;
+}
+
+#root td {
+  height: var(--ops-row);
+}
+
+#root tbody tr:last-child td {
+  border-bottom-color: transparent !important;
+}
+
+#root td .font-medium,
+#root td .font-semibold,
+#root td .font-bold {
+  color: var(--ops-text) !important;
+}
+
+#root td .text-xs,
+#root td .text-sm {
+  line-height: 1.35;
+}
+
+#root .overflow-x-auto + .flex,
+#root table + .flex {
+  padding-top: 14px;
+}
+
+#root .aspect-video,
+#root video,
+#root canvas {
+  max-width: 100%;
+}
+
+#root .aspect-video {
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 0 1px rgba(245, 166, 35, .08), 0 18px 48px rgba(0, 0, 0, .32);
+}
+
+#root [class*="grid-cols-"][class*="lg:grid-cols-2"] > .rounded-xl,
+#root [class*="grid-cols-"][class*="lg:grid-cols-2"] > .rounded-2xl {
+  height: fit-content;
+}
+
+#root [class*="sticky"] {
+  align-self: start;
+}
+
+#root .fixed.inset-0 {
+  backdrop-filter: blur(10px);
+}
+
+#root .fixed.inset-0 > div,
+#root [role="dialog"] {
+  max-width: calc(100vw - 24px);
+}
+
+#root .fixed.bottom-0,
+#root .fixed.bottom-4,
+#root [class*="bottom-0"] {
+  max-width: 100vw;
+}
+
+@media (min-width: 1280px) {
+  #root main > .p-4,
+  #root main > .lg\:p-6 {
+    padding: 32px !important;
+  }
+
+  #root .xl\:grid-cols-6 {
+    gap: 20px !important;
+  }
+
+  #root .lg\:grid-cols-2 {
+    gap: 26px !important;
+  }
+
+  #root .lg\:grid-cols-3,
+  #root .lg\:grid-cols-4 {
+    gap: 22px !important;
+  }
+}
+
+@media (max-width: 1279px) {
+  :root {
+    --ops-sidebar: 252px;
+    --ops-page-pad: 22px;
+  }
+
+  #root main > .p-4,
+  #root main > .lg\:p-6 {
+    padding: 22px !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --ops-topbar: 64px;
+    --ops-row: auto;
+  }
+
+  #root header {
+    box-shadow: 0 12px 26px rgba(0, 0, 0, .32);
+  }
+
+  #root header .truncate {
+    max-width: 42vw;
+  }
+
+  #root main > div {
+    max-width: 100%;
+  }
+
+  #root main h1,
+  #root main .font-\[\'Teko\'\].text-4xl,
+  #root main .font-\[\'Teko\'\].text-5xl {
+    font-size: clamp(2rem, 9vw, 3.25rem) !important;
+  }
+
+  #root .grid {
+    gap: 16px !important;
+  }
+
+  #root .overflow-x-auto table {
+    min-width: 0;
+  }
+
+  #root tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  #root tbody tr {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .22);
+  }
+
+  #root td {
+    height: auto;
+  }
+
+  #root td:empty {
+    display: none;
+  }
+
+  #root td > .flex {
+    min-width: 0;
+  }
+
+  #root td button,
+  #root td a {
+    min-height: 40px;
+  }
+
+  #root .aspect-video {
+    min-height: 320px;
+  }
+
+  #root [class*="grid-cols-2"],
+  #root [class*="grid-cols-3"],
+  #root [class*="grid-cols-4"],
+  #root [class*="grid-cols-5"],
+  #root [class*="grid-cols-6"] {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #root header {
+    padding-inline: 12px !important;
+  }
+
+  #root header .hidden,
+  #root header [class*="md:flex"] {
+    min-width: 0;
+  }
+
+  #root main > .p-4,
+  #root main > .lg\:p-6 {
+    padding: 16px 12px 92px !important;
+  }
+
+  #root .rounded-xl,
+  #root .rounded-2xl,
+  #root .rounded-lg {
+    border-radius: 13px !important;
+  }
+
+  #root .p-6,
+  #root .p-5,
+  #root .p-4 {
+    padding: 16px !important;
+  }
+
+  #root .flex:not(nav .flex) {
+    min-width: 0;
+  }
+
+  #root .flex-wrap {
+    row-gap: 10px !important;
+  }
+
+  #root button {
+    min-height: 42px;
+  }
+
+  #root input,
+  #root select,
+  #root textarea {
+    min-height: 46px;
+    width: 100%;
+  }
+
+  #root .aspect-video {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 430px) {
+  #root main > .p-4,
+  #root main > .lg\:p-6 {
+    padding: 12px 10px 92px !important;
+  }
+
+  #root header {
+    min-height: 60px;
+  }
+
+  #root header .w-8.h-8 {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  #root .gap-4,
+  #root .gap-5,
+  #root .gap-6 {
+    gap: 14px !important;
+  }
+
+  #root .space-y-5 > :not([hidden]) ~ :not([hidden]),
+  #root .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 16px !important;
+  }
+
+  #root main h1,
+  #root main .font-\[\'Teko\'\].text-4xl,
+  #root main .font-\[\'Teko\'\].text-5xl {
+    font-size: 2.25rem !important;
+  }
+
+  #root .text-xs {
+    font-size: .76rem !important;
+  }
+
+  #root .text-sm {
+    font-size: .88rem !important;
+  }
+
+  #root tbody tr {
+    padding: 13px !important;
+  }
+
+  #root td {
+    padding: 9px 2px !important;
+  }
+
+  #root td .flex.gap-1,
+  #root td .flex.gap-2,
+  #root td .flex.gap-3 {
+    gap: 8px !important;
+  }
+
+  #root td button {
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  #root .aspect-video {
+    min-height: 260px;
+  }
+
+  #root [class*="w-["] {
+    max-width: 100%;
+  }
+}
+
+/* OPS_COMPACT_SCALE_LAYER_BEGIN */
+/* Compact premium scale layer: CSS-only desktop correction. */
+:root {
+  --ops-sidebar: 248px;
+  --ops-topbar: 68px;
+  --ops-page-pad: 28px;
+  --ops-card-pad: 20px;
+  --ops-radius: 16px;
+  --ops-radius-sm: 10px;
+  --ops-control: 40px;
+  --ops-row: 56px;
+  --ops-shadow: 0 12px 28px rgba(0, 0, 0, .24);
+}
+
+@media (min-width: 1024px) {
+  body,
+  #root {
+    font-size: 14px;
+  }
+
+  #root .hidden.lg\:flex,
+  #root .hidden.lg\:flex > .flex-col,
+  #root .hidden.lg\:flex > .flex-col.w-64,
+  #root .w-64.flex-col {
+    width: var(--ops-sidebar) !important;
+    flex: 0 0 var(--ops-sidebar) !important;
+  }
+
+  #root .hidden.lg\:flex > .flex-col > div:first-child,
+  #root header {
+    min-height: var(--ops-topbar) !important;
+  }
+
+  #root .hidden.lg\:flex > .flex-col > div:first-child {
+    padding: 18px 18px 14px !important;
+  }
+
+  #root nav {
+    padding: 10px !important;
+  }
+
+  #root nav p.text-\[8px\] {
+    font-size: 10px !important;
+    letter-spacing: .16em !important;
+    line-height: 1.2 !important;
+    margin: 12px 10px 6px !important;
+  }
+
+  #root nav button {
+    min-height: 46px !important;
+    padding: 8px 10px !important;
+    gap: 10px !important;
+    border-radius: 11px !important;
+    font-size: 12px !important;
+    line-height: 1.15 !important;
+  }
+
+  #root nav button svg,
+  #root .sidebar svg,
+  #root .nav svg,
+  #root .nav-item svg,
+  #root [class*='nav'] svg {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    flex: 0 0 18px !important;
+    stroke-width: 2 !important;
+  }
+
+  #root [class*='brand'] svg,
+  #root header .w-8.h-8 svg {
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  #root .sidebar i,
+  #root .nav i,
+  #root .nav-item i {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    flex: 0 0 18px !important;
+    font-size: 16px !important;
+    line-height: 18px !important;
+  }
+
+  #root header {
+    padding: 12px 22px !important;
+  }
+
+  #root header button {
+    min-width: 38px !important;
+    min-height: 38px !important;
+    border-radius: 10px !important;
+  }
+
+  #root header .w-8.h-8 {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 10px !important;
+  }
+
+  #root .font-\[\'Teko\'\].text-3xl {
+    font-size: 32px !important;
+    line-height: 1 !important;
+    letter-spacing: .075em !important;
+  }
+
+  #root main > .p-4,
+  #root main > .lg\:p-6 {
+    padding: var(--ops-page-pad) !important;
+  }
+
+  #root main > div {
+    max-width: 1480px !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  #root main h1,
+  #root main .font-\[\'Teko\'\].text-4xl,
+  #root main .font-\[\'Teko\'\].text-5xl {
+    font-size: clamp(28px, 2.35vw, 34px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: .075em !important;
+    text-transform: uppercase;
+  }
+
+  #root .gap-1 { gap: 5px !important; }
+  #root .gap-2 { gap: 8px !important; }
+  #root .gap-3 { gap: 12px !important; }
+  #root .gap-4 { gap: 16px !important; }
+  #root .gap-5 { gap: 18px !important; }
+  #root .gap-6 { gap: 20px !important; }
+
+  #root .space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 8px !important; }
+  #root .space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 12px !important; }
+  #root .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 16px !important; }
+  #root .space-y-5 > :not([hidden]) ~ :not([hidden]) { margin-top: 18px !important; }
+  #root .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 20px !important; }
+
+  #root .p-3 { padding: 12px !important; }
+  #root .p-4 { padding: 16px !important; }
+  #root .p-5 { padding: 18px !important; }
+  #root .p-6 { padding: var(--ops-card-pad) !important; }
+
+  #root .px-2 { padding-left: 8px !important; padding-right: 8px !important; }
+  #root .px-3 { padding-left: 12px !important; padding-right: 12px !important; }
+  #root .px-4 { padding-left: 16px !important; padding-right: 16px !important; }
+  #root .py-2 { padding-top: 9px !important; padding-bottom: 9px !important; }
+  #root .py-3 { padding-top: 11px !important; padding-bottom: 11px !important; }
+
+  #root .grid > .rounded-xl,
+  #root .grid > .rounded-2xl,
+  #root .space-y-5 > .rounded-xl,
+  #root .space-y-4 > .rounded-xl,
+  #root .rounded-xl.border,
+  #root .rounded-2xl.border,
+  #root .rounded-lg.border {
+    border-radius: var(--ops-radius) !important;
+    box-shadow: var(--ops-shadow) !important;
+  }
+
+  #root .xl\:grid-cols-6,
+  #root .lg\:grid-cols-5,
+  #root .lg\:grid-cols-4 {
+    gap: 16px !important;
+  }
+
+  #root .xl\:grid-cols-6 {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+  }
+
+  #root .grid > .rounded-xl,
+  #root .grid > .rounded-2xl {
+    min-height: 96px !important;
+  }
+
+  #root .text-5xl {
+    font-size: 2.35rem !important;
+    line-height: .95 !important;
+  }
+
+  #root .text-4xl {
+    font-size: 2.1rem !important;
+    line-height: .98 !important;
+  }
+
+  #root .text-3xl {
+    font-size: 1.75rem !important;
+    line-height: 1 !important;
+  }
+
+  #root .text-2xl {
+    font-size: 1.45rem !important;
+  }
+
+  #root .text-sm {
+    font-size: .84rem !important;
+  }
+
+  #root .text-xs,
+  #root .text-\[10px\],
+  #root .text-\[9px\],
+  #root .text-\[8px\] {
+    font-size: .68rem !important;
+    letter-spacing: .14em !important;
+  }
+
+  #root button,
+  #root [role='button'] {
+    min-height: 40px !important;
+    border-radius: 11px !important;
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+  }
+
+  #root button.p-1,
+  #root button.p-2,
+  #root td button,
+  #root .action-btn {
+    min-width: 36px !important;
+    min-height: 36px !important;
+    padding: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  #root .action-btn svg,
+  #root button svg {
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    flex: 0 0 16px !important;
+    stroke-width: 2 !important;
+  }
+
+  #root input,
+  #root select,
+  #root textarea {
+    min-height: var(--ops-control) !important;
+    padding-inline: 12px !important;
+    font-size: 13px !important;
+  }
+
+  #root th {
+    height: 40px !important;
+    padding: 10px 14px !important;
+    font-size: 10.5px !important;
+    letter-spacing: .14em !important;
+  }
+
+  #root td {
+    height: var(--ops-row) !important;
+    min-height: var(--ops-row) !important;
+    padding: 12px 14px !important;
+    font-size: 13px !important;
+  }
+
+  #root th:first-child,
+  #root td:first-child {
+    padding-left: 14px !important;
+  }
+
+  #root th:last-child,
+  #root td:last-child {
+    padding-right: 14px !important;
+  }
+
+  #root .overflow-x-auto table {
+    min-width: 720px !important;
+  }
+
+  #root .aspect-video {
+    min-height: 240px !important;
+    border-radius: var(--ops-radius) !important;
+  }
+
+  #root img {
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --ops-topbar: 64px;
+    --ops-row: auto;
+  }
+
+  #root nav button svg,
+  #root .sidebar svg,
+  #root .nav svg,
+  #root .nav-item svg,
+  #root [class*='nav'] svg {
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    flex: 0 0 18px !important;
+    stroke-width: 2 !important;
+  }
+}
+/* OPS_COMPACT_SCALE_LAYER_END */
