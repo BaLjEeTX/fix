@@ -1,0 +1,6 @@
+# Local testing mock endpoints
+events/
+dist/events/
+api/
+dist/api/
+serve.json

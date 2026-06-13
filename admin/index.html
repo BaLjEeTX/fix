@@ -1768,7 +1768,7 @@ tr:hover td{background:rgba(255,255,255,.012)}
 <div id="toast"></div>
 
 <script>
-const S={key:'',opsRole:'superadmin',notify:'both',vehicles:[],tickets:[],payments:[],resendTicketId:'',scanActive:false,cam:null,facing:'environment',raf:null,log:[]};
+const S={key:'',opsRole:'superadmin',notify:'both',vehicles:[],tickets:[],payments:[],resendTicketId:'',scanActive:false,scanLock:false,cam:null,facing:'environment',raf:null,log:[]};
 const SPWD='enicilion2026';
 
 function toast(msg,type){
@@ -2098,7 +2098,17 @@ function showScanResult(d,code){
   S.log.unshift({type:d.duplicate?'dup':(d.valid?'ok':'bad'),name:d.name||code,time:new Date()});
   if(S.log.length>50)S.log.pop();
   renderScanLog();
-  if(S.scanActive)setTimeout(()=>{if(S.scanActive)startCam()},2200);
+
+  const isMulti=document.getElementById('multi-scan-mode')?.checked;
+  if(isMulti){
+    // In multi-scan mode: release the scan lock and hide results after 2.2 seconds
+    setTimeout(()=>{
+      S.scanLock=false;
+      el.style.display='none';
+    },2200);
+  } else {
+    // In single-scan mode: the camera is stopped, we do not restart it automatically.
+  }
 }
 
 function renderScanLog(){
@@ -2119,6 +2129,7 @@ async function startCam(){
     idle.style.display='none';
     line.classList.remove('paused');
     S.scanActive=true;
+    S.scanLock=false;
     document.getElementById('btn-cam-start').disabled=true;
     document.getElementById('btn-cam-stop').disabled=false;
     camLoop();
@@ -2129,6 +2140,7 @@ function stopCam(){
   if(S.cam){S.cam.getTracks().forEach(t=>t.stop());S.cam=null}
   if(S.raf){cancelAnimationFrame(S.raf);S.raf=null}
   S.scanActive=false;
+  S.scanLock=false;
   document.getElementById('scan-video').srcObject=null;
   document.getElementById('scan-idle').style.display='';
   document.getElementById('scan-line').classList.add('paused');
@@ -2142,13 +2154,29 @@ function camLoop(){
   const ctx=canvas.getContext('2d');
   function tick(){
     if(!S.scanActive)return;
+    if(S.scanLock){
+      // Loop but do not process frame when scanning is locked
+      S.raf=requestAnimationFrame(tick);
+      return;
+    }
     if(video.readyState===video.HAVE_ENOUGH_DATA){
       canvas.width=video.videoWidth;canvas.height=video.videoHeight;
       ctx.drawImage(video,0,0);
       if(typeof jsQR!=='undefined'){
         const img=ctx.getImageData(0,0,canvas.width,canvas.height);
         const res=jsQR(img.data,img.width,img.height,{inversionAttempts:'dontInvert'});
-        if(res?.data){stopCam();processCode(res.data);return}
+        if(res?.data){
+          const isMulti=document.getElementById('multi-scan-mode')?.checked;
+          if(isMulti){
+            S.scanLock=true;
+            processCode(res.data);
+            S.raf=requestAnimationFrame(tick);
+          }else{
+            stopCam();
+            processCode(res.data);
+          }
+          return;
+        }
       }
     }
     S.raf=requestAnimationFrame(tick);
@@ -2161,6 +2189,12 @@ document.getElementById('btn-cam-stop').onclick=stopCam;
 document.getElementById('btn-cam-flip').onclick=()=>{S.facing=S.facing==='environment'?'user':'environment';if(S.scanActive){stopCam();setTimeout(startCam,200)}};
 document.getElementById('manual-btn').onclick=()=>{const c=document.getElementById('manual-code').value.trim();if(c){processCode(c);document.getElementById('manual-code').value=''}};
 document.getElementById('manual-code').onkeydown=e=>{if(e.key==='Enter')document.getElementById('manual-btn').click()};
+
+const multiScanCheckbox=document.getElementById('multi-scan-mode');
+if(multiScanCheckbox){
+  multiScanCheckbox.checked=localStorage.getItem('enc_multi_scan')==='true';
+  multiScanCheckbox.onchange=function(){localStorage.setItem('enc_multi_scan',multiScanCheckbox.checked)};
+}
 
 
 /* DASHBOARD — SALE TOGGLE + TODAY STATS */
@@ -3653,9 +3687,47 @@ function loadPOS(){
       var matchedTier=posTierOptions.find(function(t){return t.id===selectedTierId;}) || posFindTierForCart();
       if(!matchedTier&&!giveaway3){showToast('Select a real ticket tier item for POS sale');return;}
       try{
-        var d=await apiCall('POST','/admin/pos/ticket',{
-          tierId:matchedTier?matchedTier.id:(posTierOptions[0]?.id||''),
-          buyerName:buyerName,buyerPhone:buyerPhone,buyerEmail:buyerEmail,
+        var d=await apiCall('POST','/admin/pos/tickets',{
+          buyerName:buyerName,
+          buyerPhone:buyerPhone,
+          buyerEmail:buyerEmail,
+          paymentMethod:posPayMethod,
+          isGiveaway:giveaway3,
+          items:posCart.map(function(c){
+            var aliases={
+              'early bird phase 2':'early bird phase 2 pass',
+              'spectator pass':'spectator pass',
+              'fan pit':'paddock access',
+              'vip pass':'vip lounge',
+              'paddock access':'paddock access',
+              'soft beverage package':'f b pass with soft drinks',
+              'hard beverage package':'f b pass with hard drinks',
+              'soft voucher':'f b pass with soft drinks',
+              'hard voucher':'f b pass with hard drinks'
+            };
+            var normName=String(c.name||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+            var tierKey=aliases[normName]||normName;
+            var tier=posTierOptions.find(function(t){
+              var tName=String(t.name||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+              return tName===tierKey;
+            });
+            var resolvedId = tier ? tier.id : null;
+            if(!resolvedId){
+              if(matchedTier){
+                resolvedId = matchedTier.id;
+              } else if(selectedTierId){
+                resolvedId = selectedTierId;
+              } else {
+                resolvedId = posTierOptions[0]?.id || c.id;
+              }
+            }
+            return {
+              tierId:resolvedId,
+              qty:c.qty,
+              price:c.price,
+              meta:c.meta
+            };
+          }),
           notes:posPayMethod+(giveaway3?' [giveaway]':'')+' | Items: '+allItems,
         });
         document.getElementById('pos-code').textContent=d.ticketCode||d.id||'---';
@@ -3663,7 +3735,7 @@ function loadPOS(){
         posCart=[];posRenderCart();
         ['pos-name','pos-phone','pos-email'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
         if(document.getElementById('pos-giveaway')) document.getElementById('pos-giveaway').checked=false;
-        toast('Ticket issued: '+(d.ticketCode||'OK'),'success');
+        toast('Tickets issued: '+(d.ticketCode||'OK'),'success');
         if(document.querySelector('.nav-item.active')?.dataset.tab==='treasury')loadTreasury();
       }catch(e2){showToast(e2.message||String(e2));}
     };
