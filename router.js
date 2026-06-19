@@ -86,20 +86,39 @@ function renderNavbar() {
         </div>
 
         <div style="display: flex; gap: 16px; align-items: center;">
+          <button id="deconstruct-toggle-btn" class="nav-cta" style="border-color: var(--accent-yellow); color: var(--accent-yellow); background: transparent; box-shadow: none; font-size: 0.7rem; padding: 8px 16px;">Deconstruct Canvas</button>
           ${auth 
             ? `
-              <a href="/profile" class="nav-link ${path === '/profile' ? 'active' : ''}" style="font-size:0.85rem; font-weight: 600;">Profile</a>
-              <button id="logout-btn-nav" class="nav-cta" style="background:transparent; color:#ff007f; border:1px solid rgba(255, 0, 127, 0.3); box-shadow:none;">Logout</button>
+              <a href="/profile" class="nav-link ${path === '/profile' ? 'active' : ''}" style="font-size:0.8rem; font-weight: 800;">Profile</a>
+              <button id="logout-btn-nav" class="nav-cta" style="background:transparent; color:var(--accent); border:2px solid var(--accent); box-shadow:none; padding: 8px 16px;">Logout</button>
               `
             : `
-              <a href="/login" class="nav-link ${path === '/login' ? 'active' : ''}" style="font-size:0.85rem; font-weight: 600;">Login</a>
-              <a href="/signup" class="nav-cta">Register</a>
+              <a href="/login" class="nav-link ${path === '/login' ? 'active' : ''}" style="font-size:0.8rem; font-weight: 800;">Login</a>
+              <a href="/signup" class="nav-cta" style="padding: 8px 16px;">Register</a>
               `
           }
         </div>
       </div>
     </nav>
   `;
+
+  // Bind Deconstruction Toggle
+  const deconstructBtn = document.getElementById('deconstruct-toggle-btn');
+  if (deconstructBtn) {
+    const updateBtnStyle = () => {
+      const isDeconstructed = document.body.classList.contains('state-deconstructed');
+      deconstructBtn.textContent = isDeconstructed ? 'Reconstruct Canvas' : 'Deconstruct Canvas';
+      deconstructBtn.style.background = isDeconstructed ? 'var(--accent)' : 'transparent';
+      deconstructBtn.style.color = isDeconstructed ? '#fff' : 'var(--accent-yellow)';
+      deconstructBtn.style.borderColor = isDeconstructed ? 'var(--accent)' : 'var(--accent-yellow)';
+    };
+
+    deconstructBtn.onclick = () => {
+      document.body.classList.toggle('state-deconstructed');
+      updateBtnStyle();
+    };
+    updateBtnStyle();
+  }
 
   const logoutBtn = document.getElementById('logout-btn-nav');
   if (logoutBtn) {
@@ -120,7 +139,7 @@ function renderFooter() {
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: #fff;">ENICILION<span>.</span></h3>
+            <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #fff;">ENICILION<span>.</span></h3>
             <p>Experiential event curation and automotive art execution. Pushing mechanical discipline into aggressive performance aesthetics.</p>
           </div>
           <div>
@@ -143,7 +162,7 @@ function renderFooter() {
         </div>
         <div class="footer-bottom">
           <p class="footer-copy">&copy; 2026 ENICILION. Organized by Jaspreet Singh and Vivan Vardhan. All rights reserved.</p>
-          <div style="font-size: 0.8rem; color: var(--accent); font-family: var(--font-header); font-weight: 600;">
+          <div style="font-size: 0.8rem; color: var(--accent); font-family: var(--font-header); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;">
             Curated by Discipline. Driven by Aggression.
           </div>
         </div>
@@ -178,6 +197,70 @@ export function handleRouting() {
   handler(appRoot);
 }
 
+// Decorative Cubist Sketch SVGs
+function getCarSketchSVG() {
+  return \`
+    <svg viewBox="0 0 500 240" class="sketch-svg" xmlns="http://www.w3.org/2000/svg">
+      <!-- Geometric Color Blocks -->
+      <polygon points="40,20 160,10 140,90 20,80" fill="var(--accent-secondary)" opacity="0.15"/>
+      <polygon points="340,30 460,40 440,120 320,110" fill="var(--accent)" opacity="0.12"/>
+      <circle cx="250" cy="120" r="50" fill="var(--accent-yellow)" opacity="0.08"/>
+      
+      <!-- Cubist Layout Guides -->
+      <line x1="10" y1="120" x2="490" y2="120" stroke="rgba(18, 18, 23, 0.15)" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <line x1="250" y1="10" x2="250" y2="230" stroke="rgba(18, 18, 23, 0.15)" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+      <!-- Car Outline (Sketch Style) -->
+      <path d="M 40 160 
+               C 70 145, 110 150, 120 160 
+               C 135 160, 155 125, 180 115 
+               C 215 100, 305 90, 340 100 
+               C 370 105, 395 85, 440 90
+               C 465 95, 480 115, 485 130
+               L 490 155
+               C 475 160, 455 160, 445 160
+               C 435 135, 380 135, 370 160
+               L 190 160
+               C 180 135, 125 135, 115 160
+               L 40 160 Z" 
+            fill="none" stroke="var(--text-paper)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            
+      <!-- Extra sketch construction lines -->
+      <path d="M 120 160 L 180 115 M 340 100 L 370 160" fill="none" stroke="var(--text-paper)" stroke-width="1" opacity="0.6"/>
+      <path d="M 180 115 L 205 135 L 305 135 L 340 100" fill="none" stroke="var(--text-paper)" stroke-width="1.5"/>
+      <line x1="250" y1="100" x2="250" y2="135" stroke="var(--text-paper)" stroke-width="1"/>
+
+      <!-- Wheels -->
+      <circle cx="152" cy="160" r="32" fill="none" stroke="var(--text-paper)" stroke-width="2.5"/>
+      <circle cx="152" cy="160" r="12" fill="none" stroke="var(--text-paper)" stroke-width="1.5"/>
+      <circle cx="408" cy="160" r="32" fill="none" stroke="var(--text-paper)" stroke-width="2.5"/>
+      <circle cx="408" cy="160" r="12" fill="none" stroke="var(--text-paper)" stroke-width="1.5"/>
+      
+      <!-- Spokes -->
+      <line x1="152" y1="128" x2="152" y2="192" stroke="var(--text-paper)" stroke-width="1"/>
+      <line x1="120" y1="160" x2="184" y2="160" stroke="var(--text-paper)" stroke-width="1"/>
+      <line x1="408" y1="128" x2="408" y2="192" stroke="var(--text-paper)" stroke-width="1"/>
+      <line x1="376" y1="160" x2="440" y2="160" stroke="var(--text-paper)" stroke-width="1"/>
+      
+      <!-- Speed lines / abstract sweeps -->
+      <path d="M 15 130 Q 35 125 55 132" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M 5 150 Q 20 148 35 152" fill="none" stroke="var(--accent-secondary)" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  \`;
+}
+
+function getSmallCarSVG() {
+  return \`
+    <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 10 70 C 30 65, 45 68, 50 70 C 60 70, 70 55, 80 50 C 100 40, 140 40, 150 45 C 160 48, 170 40, 185 42 L 190 70 Z" 
+            fill="none" stroke="var(--text-paper)" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="65" cy="70" r="15" fill="none" stroke="var(--text-paper)" stroke-width="2"/>
+      <circle cx="160" cy="70" r="15" fill="none" stroke="var(--text-paper)" stroke-width="2"/>
+      <line x1="10" y1="50" x2="40" y2="50" stroke="var(--accent)" stroke-width="1.5"/>
+    </svg>
+  \`;
+}
+
 // ============================================================
 // PAGE RENDERERS
 // ============================================================
@@ -187,15 +270,24 @@ function renderHome(container) {
   container.innerHTML = `
     <!-- Hero Section -->
     <section class="hero animate-fade-in">
-      <div class="hero-bg"></div>
       <div class="container">
-        <div class="hero-content">
-          <span class="hero-tagline">Experiential Event Curators</span>
-          <h1 class="hero-title">EXPERIENTIAL ART<br><span>DRIVEN BY</span><br>PERFORMANCE</h1>
-          <p class="hero-desc">We design, coordinate, and execute premium, high-octane automotive spectacles. Merging precision mechanical design, kinetic motion, and acoustic engineering into prestige sensory experiences.</p>
-          <div class="hero-actions">
-            <a href="/event" class="btn btn-primary">Explore Case Studies</a>
-            <a href="/apply" class="btn btn-secondary">Apply for Staging</a>
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="hero-tagline">Experiential Event Curators</span>
+            <h1 class="hero-title">EXPERIENTIAL ART<br><span>DRIVEN BY</span><br>PERFORMANCE</h1>
+            <p class="hero-desc">We design, coordinate, and execute premium, high-octane automotive spectacles. Merging precision mechanical design, kinetic motion, and acoustic engineering into prestige sensory experiences.</p>
+            <div class="hero-actions">
+              <a href="/event" class="btn btn-primary">Explore Case Studies</a>
+              <a href="/apply" class="btn btn-secondary">Apply for Staging</a>
+            </div>
+          </div>
+          
+          <div class="sketch-box animate-fade-in" style="transform: rotate(1.5deg);">
+            <div class="museum-label" style="border-color: var(--text-paper); color: var(--text-paper); margin-bottom: 12px;">EXHIBIT NO. 01 // Blueprints</div>
+            ${getCarSketchSVG()}
+            <p style="color: var(--text-paper); font-size: 0.8rem; font-family: var(--font-header); font-weight: 700; margin-top: 12px; text-transform: uppercase;">
+              Figure A: Deconstructed Aerodynamic Geometry
+            </p>
           </div>
         </div>
       </div>
@@ -211,27 +303,32 @@ function renderHome(container) {
         </div>
         
         <div class="services-grid">
-          <div class="glass-panel service-card">
+          <div class="collage-card service-card">
+            <span class="museum-label">Catalog Ref. A-1</span>
             <div class="service-icon">✦</div>
             <h3 class="service-name">Bespoke Curation</h3>
             <p class="service-desc">From restricted underground night meets to professional closed-circuit track events. We engineer custom spectacles featuring curated vehicle selections.</p>
           </div>
-          <div class="glass-panel service-card">
+          <div class="collage-card service-card theme-paper">
+            <span class="museum-label" style="border-color:var(--text-paper); color:var(--text-paper);">Catalog Ref. A-2</span>
             <div class="service-icon">✦</div>
             <h3 class="service-name">Acoustic Orchestration</h3>
             <p class="service-desc">Orchestrating raw engine harmonics. Our team designs acoustic showcases, rev battles, and high-fidelity venue audio systems for peak sensory impact.</p>
           </div>
-          <div class="glass-panel service-card">
+          <div class="collage-card service-card">
+            <span class="museum-label">Catalog Ref. A-3</span>
             <div class="service-icon">✦</div>
             <h3 class="service-name">Drift Choreography</h3>
             <p class="service-desc">Providing certified drift demonstration logistics, stunt drivers, grid safety coordination, and track barriers to maintain a secure environment.</p>
           </div>
-          <div class="glass-panel service-card">
+          <div class="collage-card service-card theme-paper">
+            <span class="museum-label" style="border-color:var(--text-paper); color:var(--text-paper);">Catalog Ref. A-4</span>
             <div class="service-icon">✦</div>
             <h3 class="service-name">Creative Media Engine</h3>
             <p class="service-desc">High-speed camera tracking, cinematic videography, and creative direction to translate kinetic machine energy into brand-defining content assets.</p>
           </div>
-          <div class="glass-panel service-card">
+          <div class="collage-card service-card">
+            <span class="museum-label">Catalog Ref. A-5</span>
             <div class="service-icon">✦</div>
             <h3 class="service-name">Gate Operations</h3>
             <p class="service-desc">Seamless ticket validation systems, custom-branded check-in portals, and digital dashboard integrations mapping real-time spectator entries.</p>
@@ -248,7 +345,7 @@ function renderHome(container) {
             <img src="/media/custom-build-bg.webp" class="phil-canvas" alt="Automotive Architecture">
             <div class="phil-overlay">
               <div class="phil-overlay-title">Aesthetic Core</div>
-              <p style="font-size:0.85rem; color:#94a3b8;">Mechanical sculpture in constant motion. Every rev, every slip is a deliberate artistic expression.</p>
+              <p style="font-size:0.85rem; font-weight: 700;">Mechanical sculpture in constant motion. Every rev, every slip is a deliberate artistic expression.</p>
             </div>
           </div>
           <div class="phil-content">
@@ -272,25 +369,26 @@ function renderHome(container) {
             <p>Interested in launching a brand activation, sponsoring our next motorsport spectacle, or commissioning our event coordination services? Submit your concept.</p>
             
             <div class="form-info-list">
-              <div class="glass-panel form-info-item">
+              <div class="collage-card theme-paper form-info-item" style="padding: 24px;">
                 <div class="form-info-icon">✦</div>
                 <div>
                   <div class="form-info-label">Corporate Email</div>
-                  <div class="form-info-val">partners@enicilion.com</div>
+                  <div class="form-info-val" style="color:var(--text-paper); font-weight:700;">partners@enicilion.com</div>
                 </div>
               </div>
-              <div class="glass-panel form-info-item">
+              <div class="collage-card theme-paper form-info-item" style="padding: 24px;">
                 <div class="form-info-icon">✦</div>
                 <div>
                   <div class="form-info-label">Operations HQ</div>
-                  <div class="form-info-val">Chandigarh, Punjab, India</div>
+                  <div class="form-info-val" style="color:var(--text-paper); font-weight:700;">Chandigarh, Punjab, India</div>
                 </div>
               </div>
             </div>
           </div>
 
           <div>
-            <form id="partner-form" class="glass-panel card-form">
+            <form id="partner-form" class="collage-card card-form">
+              <div class="museum-label" style="margin-bottom: 24px;">Inquiry Intake Form</div>
               <div class="form-group">
                 <label class="form-label">Brand Name</label>
                 <input type="text" id="brand_name" required class="form-control" placeholder="e.g. Redline Performance">
@@ -387,7 +485,7 @@ function renderEventCaseStudy(container) {
       <div class="container">
         <div class="section-header" style="max-width:800px; margin-bottom:60px;">
           <span class="section-label">Case Study recap</span>
-          <h1 class="hero-title" style="font-size:clamp(2rem, 6vw, 4rem); line-height:1;">Motorscape 2026</h1>
+          <h1 class="hero-title" style="font-size:clamp(2rem, 6vw, 4rem); line-height:1;">Motorscape 26</h1>
           <p style="font-size:1.1rem; margin-top:20px;">A detailed review of our latest nocturnal showcase. Executed at HopUp Chandigarh, blending precision vehicle grid setups, industrial lighting displays, and professional drifting.</p>
           <div style="margin-top:20px; font-size:0.9rem; color:var(--text-secondary); font-family:var(--font-header);">
             Organized by <strong>Jaspreet Singh</strong> and <strong>Vivan Vardhan</strong>
@@ -396,19 +494,19 @@ function renderEventCaseStudy(container) {
 
         <!-- Metric Cards -->
         <div class="case-stats animate-fade-in">
-          <div class="glass-panel stat-item">
+          <div class="collage-card stat-item">
             <div class="stat-num">4,500+</div>
             <div class="stat-label">Spectators Audited</div>
           </div>
-          <div class="glass-panel stat-item">
+          <div class="collage-card stat-item theme-paper">
             <div class="stat-num">150+</div>
             <div class="stat-label">Curated Vehicles</div>
           </div>
-          <div class="glass-panel stat-item">
+          <div class="collage-card stat-item">
             <div class="stat-num">30+</div>
             <div class="stat-label">Pro Drift Runs</div>
           </div>
-          <div class="glass-panel stat-item">
+          <div class="collage-card stat-item theme-paper">
             <div class="stat-num">1.8M+</div>
             <div class="stat-label">Social Reach</div>
           </div>
@@ -454,26 +552,26 @@ function renderEventCaseStudy(container) {
 
         <!-- Narrative -->
         <div class="form-layout" style="margin-bottom:80px;">
-          <div class="glass-panel" style="padding:40px;">
+          <div class="collage-card" style="padding:40px;">
             <h3 style="font-size:1.4rem; text-transform:uppercase; margin-bottom:16px; color:#fff; font-family:var(--font-header);">Nocturnal Grid Integration</h3>
             <p style="margin-bottom:16px;">Motorscape 2026 was curated to challenge the conventional "car meet" model. The venue, HopUp Chandigarh, was transformed into an industrial gallery using ambient red spotlight grids and low-frequency sonic setups.</p>
             <p>Our team managed all aspects: driver verification, registration gates using QR validation, noise-barrier compliance, and local fire department clearance for smoke/burnout protocols. By spacing the supercars and JDM imports strategically, we allowed spectators to witness structural mechanical design up close.</p>
           </div>
 
-          <div class="glass-panel" style="padding:40px;">
-            <h3 style="font-size:1.4rem; text-transform:uppercase; margin-bottom:16px; color:#fff; font-family:var(--font-header);">Chronological Protocols</h3>
+          <div class="collage-card theme-paper" style="padding:40px;">
+            <h3 style="font-size:1.4rem; text-transform:uppercase; margin-bottom:16px; color:var(--text-paper); font-family:var(--font-header);">Chronological Protocols</h3>
             <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:20px;">
               <li style="border-left: 3px solid var(--accent); padding-left: 20px;">
-                <h4 style="color:#fff; font-size:1rem; font-family:var(--font-header); text-transform:uppercase;">Rolling Entries</h4>
-                <p style="font-size:0.85rem;">Controlled timing intervals of high-performance arrivals, keeping spectators engaged safely.</p>
+                <h4 style="color:var(--text-paper); font-size:1rem; font-family:var(--font-header); text-transform:uppercase;">Rolling Entries</h4>
+                <p style="font-size:0.85rem; color:#333;">Controlled timing intervals of high-performance arrivals, keeping spectators engaged safely.</p>
               </li>
               <li style="border-left: 3px solid var(--accent); padding-left: 20px;">
-                <h4 style="color:#fff; font-size:1rem; font-family:var(--font-header); text-transform:uppercase;">Exhaust Showcases</h4>
-                <p style="font-size:0.85rem;">Acoustic monitoring of engine displacement, rev acoustics, and exhaust flame mechanics.</p>
+                <h4 style="color:var(--text-paper); font-size:1rem; font-family:var(--font-header); text-transform:uppercase;">Exhaust Showcases</h4>
+                <p style="font-size:0.85rem; color:#333;">Acoustic monitoring of engine displacement, rev acoustics, and exhaust flame mechanics.</p>
               </li>
               <li style="border-left: 3px solid var(--accent); padding-left: 20px;">
-                <h4 style="color:#fff; font-size:1rem; font-family:var(--font-header); text-transform:uppercase;">Drift taxi runs</h4>
-                <p style="font-size:0.85rem;">Professional drivers carrying passengers in dynamic slip angles, demonstrating slip choreography.</p>
+                <h4 style="color:var(--text-paper); font-size:1rem; font-family:var(--font-header); text-transform:uppercase;">Drift taxi runs</h4>
+                <p style="font-size:0.85rem; color:#333;">Professional drivers carrying passengers in dynamic slip angles, demonstrating slip choreography.</p>
               </li>
             </ul>
           </div>
@@ -484,33 +582,33 @@ function renderEventCaseStudy(container) {
           <h2 style="font-size:1.8rem; text-transform:uppercase;">Spectator Tier Overview</h2>
           <p>The event concluded with all tickets sold out within 72 hours of open registration.</p>
         </div>
-        <div class="glass-panel" style="overflow:hidden;">
+        <div class="collage-card theme-paper" style="overflow-x:auto; padding:0;">
           <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem; font-family:var(--font-header);">
             <thead>
-              <tr style="border-bottom:1px solid var(--border-color); background:rgba(255,255,255,0.02);">
-                <th style="padding:20px 24px; color:#fff;">Tier Class</th>
-                <th style="padding:20px 24px; color:#fff;">Event Access</th>
-                <th style="padding:20px 24px; color:#fff;">Price Rate</th>
-                <th style="padding:20px 24px; text-align:right; color:#fff;">Status</th>
+              <tr style="border-bottom:2px solid var(--text-paper); background:rgba(0,0,0,0.03);">
+                <th style="padding:20px 24px; color:var(--text-paper);">Tier Class</th>
+                <th style="padding:20px 24px; color:var(--text-paper);">Event Access</th>
+                <th style="padding:20px 24px; color:var(--text-paper);">Price Rate</th>
+                <th style="padding:20px 24px; text-align:right; color:var(--text-paper);">Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
-                <td style="padding:20px 24px; font-weight:700; color:#fff;">Basic Showcase Pass</td>
-                <td style="padding:20px 24px; color:var(--text-secondary);">General Access & Entry</td>
-                <td style="padding:20px 24px; color:var(--text-secondary);">₹899</td>
+              <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+                <td style="padding:20px 24px; font-weight:700; color:var(--text-paper);">Basic Showcase Pass</td>
+                <td style="padding:20px 24px; color:#444;">General Access & Entry</td>
+                <td style="padding:20px 24px; color:#444;">₹899</td>
                 <td style="padding:20px 24px; text-align:right; color:var(--accent-secondary); font-weight:700;">CLOSED</td>
               </tr>
-              <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
-                <td style="padding:20px 24px; font-weight:700; color:#fff;">Paddock Pass</td>
-                <td style="padding:20px 24px; color:var(--text-secondary);">Inner Paddock Grid & Driver Access</td>
-                <td style="padding:20px 24px; color:var(--text-secondary);">₹2,099</td>
+              <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+                <td style="padding:20px 24px; font-weight:700; color:var(--text-paper);">Paddock Pass</td>
+                <td style="padding:20px 24px; color:#444;">Inner Paddock Grid & Driver Access</td>
+                <td style="padding:20px 24px; color:#444;">₹2,099</td>
                 <td style="padding:20px 24px; text-align:right; color:var(--accent-secondary); font-weight:700;">CLOSED</td>
               </tr>
-              <tr style="border-bottom:1px solid rgba(255,255,255,0.03);">
-                <td style="padding:20px 24px; font-weight:700; color:#fff;">VIP Pass</td>
-                <td style="padding:20px 24px; color:var(--text-secondary);">Lounge Access, VIP Deck & Merch Kit</td>
-                <td style="padding:20px 24px; color:var(--text-secondary);">₹4,599</td>
+              <tr style="border-bottom:1px solid rgba(0,0,0,0.08);">
+                <td style="padding:20px 24px; font-weight:700; color:var(--text-paper);">VIP Pass</td>
+                <td style="padding:20px 24px; color:#444;">Lounge Access, VIP Deck & Merch Kit</td>
+                <td style="padding:20px 24px; color:#444;">₹4,599</td>
                 <td style="padding:20px 24px; text-align:right; color:var(--accent-secondary); font-weight:700;">CLOSED</td>
               </tr>
             </tbody>
@@ -561,21 +659,21 @@ function renderApplyVehicle(container) {
             <p style="margin-bottom:24px;">To maintain a premium standard, all entries undergo structural and safety reviews. If accepted, you will receive a digital grid pass with staging guidelines.</p>
             
             <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:20px;">
-              <li class="glass-panel" style="padding:24px; display:flex; gap:16px;">
+              <li class="collage-card" style="padding:24px; display:flex; gap:16px;">
                 <div style="color:var(--accent); font-family:var(--font-header); font-weight:700;">01</div>
                 <div>
                   <strong style="color:#fff; display:block; text-transform:uppercase; font-size:0.85rem; font-family:var(--font-header);">Clean Presentation</strong>
                   <span style="font-size:0.85rem; color:var(--text-secondary);">Vehicles must be aesthetically polished and detailing must be complete.</span>
                 </div>
               </li>
-              <li class="glass-panel" style="padding:24px; display:flex; gap:16px;">
-                <div style="color:var(--accent); font-family:var(--font-header); font-weight:700;">02</div>
+              <li class="collage-card theme-paper" style="padding:24px; display:flex; gap:16px;">
+                <div style="color:var(--accent-secondary); font-family:var(--font-header); font-weight:700;">02</div>
                 <div>
-                  <strong style="color:#fff; display:block; text-transform:uppercase; font-size:0.85rem; font-family:var(--font-header);">Mechanical Soundness</strong>
-                  <span style="font-size:0.85rem; color:var(--text-secondary);">No active fluid leaks. Brake pads, cooling systems, and tire ratings must comply.</span>
+                  <strong style="color:var(--text-paper); display:block; text-transform:uppercase; font-size:0.85rem; font-family:var(--font-header);">Mechanical Soundness</strong>
+                  <span style="font-size:0.85rem; color:#333;">No active fluid leaks. Brake pads, cooling systems, and tire ratings must comply.</span>
                 </div>
               </li>
-              <li class="glass-panel" style="padding:24px; display:flex; gap:16px;">
+              <li class="collage-card" style="padding:24px; display:flex; gap:16px;">
                 <div style="color:var(--accent); font-family:var(--font-header); font-weight:700;">03</div>
                 <div>
                   <strong style="color:#fff; display:block; text-transform:uppercase; font-size:0.85rem; font-family:var(--font-header);">Safety Marshal Compliance</strong>
@@ -586,8 +684,8 @@ function renderApplyVehicle(container) {
           </div>
 
           <div>
-            <form id="apply-form" class="glass-panel card-form" enctype="multipart/form-data">
-              <h3 style="font-size:1.25rem; text-transform:uppercase; margin-bottom:24px; border-bottom:1px solid var(--border-color); padding-bottom:12px; font-family:var(--font-header);">Staging Form</h3>
+            <form id="apply-form" class="collage-card theme-paper card-form" enctype="multipart/form-data">
+              <div class="museum-label" style="border-color:var(--text-paper); color:var(--text-paper); margin-bottom:24px;">Staging Form</div>
               
               <div class="form-group">
                 <label class="form-label">Driver Full Name</label>
@@ -611,7 +709,7 @@ function renderApplyVehicle(container) {
               </div>
 
               <!-- Vehicle Spec -->
-              <h4 style="font-size:0.85rem; text-transform:uppercase; color:var(--accent-secondary); margin: 32px 0 16px; border-bottom:1px solid rgba(124,58,237,0.2); padding-bottom:8px; font-family:var(--font-header);">Vehicle Specifications</h4>
+              <h4 style="font-size:0.85rem; text-transform:uppercase; color:var(--accent-secondary); margin: 32px 0 16px; border-bottom:2px solid var(--accent-secondary); padding-bottom:8px; font-family:var(--font-header);">Vehicle Specifications</h4>
               
               <div class="form-row">
                 <div class="form-group">
@@ -642,22 +740,22 @@ function renderApplyVehicle(container) {
 
               <div class="form-group">
                 <label class="form-label">Vehicle Media Upload (Min 1 Photo)</label>
-                <input type="file" id="app_photos" required multiple accept="image/*" class="form-control" style="background:rgba(255,255,255,0.02); padding: 10px;">
-                <span style="font-size:0.75rem; color:var(--text-muted); margin-top:4px; display:block;">Supported formats: JPG, PNG, WEBP. Max size 5MB.</span>
+                <input type="file" id="app_photos" required multiple accept="image/*" class="form-control" style="background:rgba(0,0,0,0.03); padding: 10px;">
+                <span style="font-size:0.75rem; color:#444; margin-top:4px; display:block;">Supported formats: JPG, PNG, WEBP. Max size 5MB.</span>
               </div>
 
               <div class="form-group" style="margin-top:24px;">
                 <label class="form-label" style="margin-bottom:16px;">Staging Agreement</label>
                 <div style="display:flex; flex-direction:column; gap:12px; font-size:0.85rem;">
-                  <label style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+                  <label style="display:flex; gap:10px; align-items:flex-start; cursor:pointer; color:var(--text-paper);">
                     <input type="checkbox" id="protocol_1" required style="accent-color:var(--accent); margin-top:3px;">
                     <span>I confirm my vehicle has no fluid leaks and is mechanically sound.</span>
                   </label>
-                  <label style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+                  <label style="display:flex; gap:10px; align-items:flex-start; cursor:pointer; color:var(--text-paper);">
                     <input type="checkbox" id="protocol_2" required style="accent-color:var(--accent); margin-top:3px;">
                     <span>I agree to park and operate the vehicle only in designated active spots.</span>
                   </label>
-                  <label style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+                  <label style="display:flex; gap:10px; align-items:flex-start; cursor:pointer; color:var(--text-paper);">
                     <input type="checkbox" id="protocol_3" required style="accent-color:var(--accent); margin-top:3px;">
                     <span>I agree to comply with ENICILION safety guidelines and marshal warnings.</span>
                   </label>
@@ -783,24 +881,24 @@ function renderCreatorTickets(container) {
               <button class="tab-btn" id="tab-press-btn">Press & Agency</button>
             </div>
 
-            <div class="glass-panel" style="padding:32px; font-size:0.9rem; line-height:1.6; color:var(--text-secondary);">
+            <div class="collage-card theme-paper" style="padding:32px; font-size:0.9rem; line-height:1.6;">
               <div id="creator-guide" class="tab-pane active">
-                <h4 style="color:#fff; text-transform:uppercase; margin-bottom:10px; font-family:var(--font-header);">Content Creator Guidelines</h4>
-                <p style="margin-bottom:12px;">Geared towards independent photographers, videographers, and social media creators who focus on automotive styling and drift culture.</p>
-                <p>Requires a minimum of 2,000 active followers or a verifiable portfolio showing premium grading and high-shutter kinetic photography.</p>
+                <h4 style="color:var(--text-paper); text-transform:uppercase; margin-bottom:10px; font-family:var(--font-header);">Content Creator Guidelines</h4>
+                <p style="margin-bottom:12px; color:#333;">Geared towards independent photographers, videographers, and social media creators who focus on automotive styling and drift culture.</p>
+                <p style="color:#333;">Requires a minimum of 2,000 active followers or a verifiable portfolio showing premium grading and high-shutter kinetic photography.</p>
               </div>
               <div id="press-guide" class="tab-pane">
-                <h4 style="color:#fff; text-transform:uppercase; margin-bottom:10px; font-family:var(--font-header);">Press & Media Agency Guidelines</h4>
-                <p style="margin-bottom:12px;">For established digital publications, news broadcasts, or regional magazines writing event summaries or reviews.</p>
-                <p>Access packages include high-speed media zones, grid access credentials, and direct driver interviews with Jaspreet Singh and Vivan Vardhan.</p>
+                <h4 style="color:var(--text-paper); text-transform:uppercase; margin-bottom:10px; font-family:var(--font-header);">Press & Media Agency Guidelines</h4>
+                <p style="margin-bottom:12px; color:#333;">For established digital publications, news broadcasts, or regional magazines writing event summaries or reviews.</p>
+                <p style="color:#333;">Access packages include high-speed media zones, grid access credentials, and direct driver interviews with Jaspreet Singh and Vivan Vardhan.</p>
               </div>
             </div>
           </div>
 
           <div>
             <!-- Creator Form -->
-            <form id="creator-apply-form" class="glass-panel card-form tab-pane active">
-              <h3 style="font-size:1.25rem; text-transform:uppercase; margin-bottom:24px; color:var(--accent); font-family:var(--font-header);">Creator Application</h3>
+            <form id="creator-apply-form" class="collage-card card-form tab-pane active">
+              <div class="museum-label" style="margin-bottom:24px;">Creator Application</div>
               <div class="form-group">
                 <label class="form-label">Full Name</label>
                 <input type="text" id="cre_full_name" required class="form-control" placeholder="e.g. Jaspreet Singh">
@@ -837,8 +935,8 @@ function renderCreatorTickets(container) {
             </form>
 
             <!-- Press Form -->
-            <form id="press-apply-form" class="glass-panel card-form tab-pane">
-              <h3 style="font-size:1.25rem; text-transform:uppercase; margin-bottom:24px; color:var(--accent); font-family:var(--font-header);">Press & Agency Application</h3>
+            <form id="press-apply-form" class="collage-card card-form tab-pane">
+              <div class="museum-label" style="margin-bottom:24px;">Press Application</div>
               <div class="form-group">
                 <label class="form-label">Agency Name</label>
                 <input type="text" id="press_org" required class="form-control" placeholder="e.g. Octane Magazine">
@@ -1019,12 +1117,12 @@ async function renderCareers(container) {
       </div>
     </section>
 
-    <!-- Glassmorphic Modal for job application -->
+    <!-- Modal for job application -->
     <div id="job-modal" style="position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.85); display:none; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);">
-      <div class="glass-panel card-form" style="max-width:600px; width:100%; max-height:90vh; overflow-y:auto; position:relative; padding: 48px;">
+      <div class="collage-card theme-paper card-form" style="max-width:600px; width:100%; max-height:90vh; overflow-y:auto; position:relative; padding: 48px;">
         <button id="close-job-modal" style="position:absolute; top:20px; right:20px; background:transparent; border:none; color:var(--accent-secondary); font-size:1.5rem; cursor:pointer;">✕</button>
-        <h3 id="modal-job-title" style="font-size:1.4rem; text-transform:uppercase; margin-bottom:8px; font-family:var(--font-header); color:#fff;">Position Application</h3>
-        <p id="modal-job-meta" style="font-size:0.85rem; color:var(--text-muted); margin-bottom:24px; font-family:var(--font-header);"></p>
+        <h3 id="modal-job-title" style="font-size:1.4rem; text-transform:uppercase; margin-bottom:8px; font-family:var(--font-header); color:var(--text-paper);">Position Application</h3>
+        <p id="modal-job-meta" style="font-size:0.85rem; color:#444; margin-bottom:24px; font-family:var(--font-header);"></p>
         
         <form id="job-apply-form">
           <input type="hidden" id="modal_job_id">
@@ -1082,7 +1180,7 @@ async function renderCareers(container) {
     loadingEl.style.display = 'none';
     jobsContainer.style.display = 'grid';
     jobsContainer.innerHTML = jobsList.map(job => `
-      <div class="glass-panel career-card animate-fade-in">
+      <div class="collage-card career-card animate-fade-in">
         <span class="career-dept">${job.type} • ${job.location}</span>
         <h3 class="career-title">${job.title}</h3>
         <p style="font-size:0.9rem; margin-bottom:20px; line-height:1.6;">${job.description}</p>
@@ -1098,6 +1196,8 @@ async function renderCareers(container) {
     const closeBtn = document.getElementById('close-job-modal');
     const jobIdInput = document.getElementById('modal_job_id');
     const jobForm = document.getElementById('job-apply-form');
+    const modalTitle = document.getElementById('modal-job-title');
+    const modalMeta = document.getElementById('modal-job-meta');
 
     const handleClose = () => {
       modal.style.display = 'none';
@@ -1211,7 +1311,7 @@ async function renderBlogList(container) {
 
         <div id="blog-loading" style="text-align:center; color:var(--text-secondary); margin:40px 0; font-family:var(--font-header);">QUERYING CHRONICLES...</div>
         
-        <div class="glass-panel" id="blog-panel" style="display:none; overflow:hidden;">
+        <div class="collage-card" id="blog-panel" style="display:none; overflow:hidden; padding: 0;">
           <div id="blogs-container"></div>
         </div>
       </div>
@@ -1242,15 +1342,15 @@ async function renderBlogList(container) {
     blogsContainer.innerHTML = blogs.map((post, idx) => {
       const date = new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
       return `
-        <div style="cursor:pointer; padding: 28px; border-bottom: ${idx === blogs.length - 1 ? 'none' : '1px solid var(--border-color)'}; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; transition:var(--transition);" 
-             onmouseenter="this.style.background='rgba(124, 58, 237, 0.03)';" 
+        <div style="cursor:pointer; padding: 28px; border-bottom: ${idx === blogs.length - 1 ? 'none' : '2px solid var(--border-color)'}; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; transition:var(--transition);" 
+             onmouseenter="this.style.background='rgba(27, 67, 224, 0.05)';" 
              onmouseleave="this.style.background='transparent';" 
              onclick="window.history.pushState({}, '', '/blog/${post.slug}'); window.handleRouting();">
           <div>
-            <span style="font-family:var(--font-header); font-size:0.75rem; color:var(--accent-secondary); font-weight:600; text-transform:uppercase;">${date} • Article</span>
-            <h3 style="margin:8px 0 0 0; font-size:1.25rem; color:#fff; font-family:var(--font-header);">${post.title}</h3>
+            <span style="font-family:var(--font-header); font-size:0.75rem; color:var(--accent-yellow); font-weight:800; text-transform:uppercase;">${date} • Article</span>
+            <h3 style="margin:8px 0 0 0; font-size:1.3rem; color:#fff; font-family:var(--font-header);">${post.title}</h3>
           </div>
-          <p style="font-size:0.8rem; color:var(--accent); font-family:var(--font-header); font-weight:700;">Read Log →</p>
+          <p style="font-size:0.8rem; color:var(--accent); font-family:var(--font-header); font-weight:800; text-transform:uppercase;">Read Log →</p>
         </div>
       `;
     }).join('');
@@ -1269,9 +1369,9 @@ async function renderBlogPost(container, slug) {
         
         <div id="post-loading" style="text-align:center; color:var(--text-secondary); margin:40px 0; font-family:var(--font-header);">DECODING CHRONICLE...</div>
         
-        <div class="glass-panel" id="post-panel" style="display:none; padding:48px;">
+        <div class="collage-card" id="post-panel" style="display:none; padding:48px;">
           <h1 id="post-title" class="hero-title" style="font-size:clamp(1.6rem, 5vw, 2.5rem); line-height:1.1; margin-bottom:16px; text-transform:uppercase; color:#fff;"></h1>
-          <div id="post-date" style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:40px; border-bottom:1px solid var(--border-color); padding-bottom:16px; font-family:var(--font-header);"></div>
+          <div id="post-date" style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:40px; border-bottom:2px solid var(--border-color); padding-bottom:16px; font-family:var(--font-header);"></div>
           
           <div id="post-body" style="line-height:1.8; color:var(--text-secondary); font-size:0.95rem;" class="markdown-body"></div>
         </div>
@@ -1293,7 +1393,7 @@ async function renderBlogPost(container, slug) {
 
 ### The Mathematics of Frequency
 Exhaust tones are determined by engine rotational speeds. For example, a V8 engine operating at 6,000 RPM produces a fundamental sound frequency calculated as:
-\\[f = \\frac{6000 \\times 8}{2 \\times 60} = 400\\text{ Hz}\\]
+\\[f = \\\\frac{6000 \\\\times 8}{2 \\\\times 60} = 400\\\\text{ Hz}\\]
 This 400Hz frequency defines the aggressive sound profile. Equal-length manifolds align secondary sound pulses, creating crisp, clear acoustics. Unequal-length setups cause phase differences, yielding the classic rhythmic rumble.
 
 ### Materials and Resonance
@@ -1311,12 +1411,12 @@ At ENICILION, our acoustics marshals test each showcase vehicle using high-frequ
 
 ### The Physics of Slip Angle
 Slip angle is defined as the deviation angle between the physical heading direction of a wheel and its target trajectory. In a drift, the slip angles of the rear wheels must be maintained beyond their peak grip coefficient:
-\\[\\alpha_{\\text{rear}} > \\alpha_{\\text{peak}}\\]
+\\[\\\\alpha_{\\\\text{rear}} > \\\\alpha_{\\\\text{peak}}\\]
 At this junction, lateral tire grip drops off, transitioning from static friction to dynamic sliding friction. The driver must balance this drop by throttle adjustments, regulating rear tire spin speed.
 
 ### Steering and Torque Balance
 Balancing the drift requires a continuous adjustment of counter-steer torque. The front wheels must guide the vehicle's vector. The rotational torque is balanced as:
-\\[\\tau = I \\cdot \\ddot{\\theta}\\]
+\\[\\\\tau = I \\\\cdot \\\\ddot{\\\\theta}\\]
 By balancing this rotation against the forward thrust of the rear wheels, the car slides smoothly through the corner. At ENICILION showcases, we choreograph these drift angles to allow professional stunt drivers to slide within inches of cameras safely.`
     },
     'motorscape-nocturnal': {
@@ -1375,8 +1475,8 @@ function renderLogin(container) {
   container.innerHTML = `
     <section class="section animate-fade-in" style="padding-top:140px; min-height:80vh; display:flex; align-items:center;">
       <div class="container" style="max-width:480px; width:100%;">
-        <form id="login-form" class="glass-panel card-form">
-          <h2 class="hero-title" style="font-size:1.6rem; text-transform:uppercase; margin-bottom:8px; font-family:var(--font-header); color:#fff;">Sign In</h2>
+        <form id="login-form" class="collage-card card-form">
+          <div class="museum-label" style="margin-bottom:24px;">Sign In</div>
           <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:24px; font-family:var(--font-header);">Enter your credentials to load staging profile data.</p>
           
           <div class="form-group">
@@ -1445,8 +1545,8 @@ function renderSignup(container) {
   container.innerHTML = `
     <section class="section animate-fade-in" style="padding-top:140px; min-height:80vh; display:flex; align-items:center;">
       <div class="container" style="max-width:520px; width:100%;">
-        <form id="signup-form" class="glass-panel card-form">
-          <h2 class="hero-title" style="font-size:1.6rem; text-transform:uppercase; margin-bottom:8px; font-family:var(--font-header); color:#fff;">Create Profile</h2>
+        <form id="signup-form" class="collage-card card-form">
+          <div class="museum-label" style="margin-bottom:24px;">Create Profile</div>
           <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:24px; font-family:var(--font-header);">Register user variables in the staging database.</p>
           
           <div class="form-group">
@@ -1543,11 +1643,11 @@ async function renderProfile(container) {
   container.innerHTML = `
     <section class="section animate-fade-in" style="padding-top:140px; min-height:85vh;">
       <div class="container">
-        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:24px; margin-bottom:48px; flex-wrap:wrap; gap:20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--border-color); padding-bottom:24px; margin-bottom:48px; flex-wrap:wrap; gap:20px;">
           <div>
             <span class="section-label">Account details</span>
             <h1 class="hero-title" style="font-size:clamp(2rem, 5vw, 3rem); line-height:1; text-transform:uppercase;">${auth.user.full_name}</h1>
-            <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:8px; font-family:var(--font-header);">Classification: <strong style="color:var(--accent-secondary); text-transform:uppercase;">${auth.user.role}</strong></p>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:8px; font-family:var(--font-header);">Classification: <strong style="color:var(--accent-yellow); text-transform:uppercase;">${auth.user.role}</strong></p>
           </div>
           <div style="display:flex; gap:16px;">
             <a href="/tickets" class="btn btn-primary" style="padding:10px 24px; font-size:0.75rem;">My Passes</a>
@@ -1563,7 +1663,7 @@ async function renderProfile(container) {
           </div>
           <div>
             <h3 style="font-size:1.35rem; text-transform:uppercase; margin-bottom:20px; font-family:var(--font-header); color:#fff;">Upcoming Schedule</h3>
-            <div class="glass-panel" style="padding:32px; text-align:center;">
+            <div class="collage-card" style="padding:32px; text-align:center;">
               <h4 style="font-size:1rem; text-transform:uppercase; color:#fff; margin-bottom:12px; font-family:var(--font-header);">Motorscape 2026 Completed</h4>
               <p style="font-size:0.9rem; margin-bottom:20px; line-height:1.6;">The HopUp Chandigarh grid showcase has completed. Stay updated for future session schedules.</p>
               <a href="/event" class="btn btn-secondary" style="font-size:0.75rem; padding:10px 20px;">View Recap</a>
@@ -1592,7 +1692,7 @@ async function renderProfile(container) {
     vehLoading.style.display = 'none';
     if (res.ok && data.success && data.vehicles && data.vehicles.length > 0) {
       vehContainer.innerHTML = data.vehicles.map(v => `
-        <div class="glass-panel" style="padding:20px; display:flex; justify-content:space-between; align-items:center; font-family:var(--font-header);">
+        <div class="collage-card" style="padding:20px; display:flex; justify-content:space-between; align-items:center; font-family:var(--font-header);">
           <div>
             <h4 style="color:#fff; font-size:1rem; text-transform:uppercase; margin-bottom:4px;">${v.car.year} ${v.car.make} ${v.car.model}</h4>
             <p style="font-size:0.8rem; color:var(--text-muted);">Plate: ${v.car.vin}</p>
@@ -1602,7 +1702,7 @@ async function renderProfile(container) {
       `).join('');
     } else {
       vehContainer.innerHTML = `
-        <div class="glass-panel" style="padding:32px; text-align:center; color:var(--text-muted); font-size:0.9rem;">
+        <div class="collage-card" style="padding:32px; text-align:center; color:var(--text-muted); font-size:0.9rem;">
           No machines registered in garage.
           <a href="/apply" style="color:var(--accent); font-weight:700; display:block; margin-top:12px;">Register a Vehicle →</a>
         </div>
@@ -1625,7 +1725,7 @@ async function renderTickets(container) {
   container.innerHTML = `
     <section class="section animate-fade-in" style="padding-top:140px; min-height:85vh;">
       <div class="container" style="max-width:850px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:24px; margin-bottom:48px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--border-color); padding-bottom:24px; margin-bottom:48px;">
           <div>
             <span class="section-label">Active Event Passes</span>
             <h1 class="hero-title" style="font-size:2.5rem; line-height:1; text-transform:uppercase;">My Passes</h1>
@@ -1655,22 +1755,29 @@ async function renderTickets(container) {
         return `
           <div class="perforated-ticket">
             <div class="ticket-main">
-              <span style="font-family:var(--font-header); font-size:0.75rem; font-weight:700; color:var(--accent-secondary); letter-spacing:0.1em; text-transform:uppercase;">${ticket.tier.name}</span>
-              <h3 style="font-size:1.5rem; color:#fff; text-transform:uppercase; margin:12px 0 16px; font-family:var(--font-header);">${ticket.event.name}</h3>
-              <div style="display:flex; flex-direction:column; gap:8px; font-size:0.85rem; color:var(--text-secondary); font-family:var(--font-header);">
-                <div>📅 ${eventDate}</div>
-                <div>📍 ${ticket.event.location}</div>
-                <div style="margin-top:16px; font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Pass Code: ${ticket.ticketCode}</div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px;">
+                <div>
+                  <span class="museum-label" style="border-color: var(--text-paper); color: var(--text-paper); margin-bottom: 16px;">${ticket.tier.name}</span>
+                  <h3 style="font-size: 1.8rem; color: var(--text-paper); text-transform: uppercase; margin: 12px 0 16px; font-family: var(--font-header);">${ticket.event.name}</h3>
+                  <div style="display:flex; flex-direction:column; gap:8px; font-size:0.85rem; color:#333; font-family:var(--font-header);">
+                    <div>📅 ${eventDate}</div>
+                    <div>📍 ${ticket.event.location}</div>
+                    <div style="margin-top:16px; font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Pass Code: ${ticket.ticketCode}</div>
+                  </div>
+                </div>
+                <div style="width: 130px; opacity: 0.85; transform: rotate(-2deg); margin-top: 10px;">
+                  ${getSmallCarSVG()}
+                </div>
               </div>
             </div>
 
             <div class="ticket-stub">
-              <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; padding:6px 12px; background:rgba(16, 185, 129, 0.1); border:1px solid #10b981; color:#10b981; border-radius:30px;">${ticket.status}</span>
+              <span style="font-size:0.75rem; font-weight:800; text-transform:uppercase; padding:6px 12px; background:rgba(16, 185, 129, 0.1); border:2px solid #10b981; color:#10b981; border-radius:0;">${ticket.status}</span>
               
-              <!-- Simulated barcode -->
+              <!-- Barcode frame -->
               <div style="text-align:center; width:100%;">
-                <div style="height:36px; background:repeating-linear-gradient(90deg, #fff, #fff 2px, #000 2px, #000 6px); border-radius:2px; margin-bottom:12px; opacity:0.8;"></div>
-                <a href="/api/ticket-pdf/${ticket.ticketCode}" target="_blank" class="btn btn-secondary" style="font-size:0.7rem; padding:8px 12px; width:100%; text-align:center; border-radius:20px;">Download PDF</a>
+                <div style="height:36px; background:repeating-linear-gradient(90deg, #111116, #111116 2px, #e9e4db 2px, #e9e4db 6px); border: 1.5px solid var(--text-paper); margin-bottom:12px; opacity:0.9;"></div>
+                <a href="/api/ticket-pdf/${ticket.ticketCode}" target="_blank" class="btn btn-secondary" style="font-size:0.7rem; padding:8px 12px; width:100%; text-align:center; border-radius:0; border-color: var(--text-paper); color: var(--text-paper);">Download PDF</a>
               </div>
             </div>
           </div>
@@ -1678,7 +1785,7 @@ async function renderTickets(container) {
       }).join('');
     } else {
       containerEl.innerHTML = `
-        <div class="glass-panel" style="padding:48px; border-radius:var(--border-radius); text-align:center; color:var(--text-muted); font-size:0.9rem;">
+        <div class="collage-card theme-paper" style="padding:48px; text-align:center; color:var(--text-muted); font-size:0.9rem;">
           No spectator passes found. 
           <p style="margin-top:12px; color:var(--text-muted);">Motorscape 2026 is concluded. Keep checking for upcoming events.</p>
         </div>
@@ -1714,16 +1821,16 @@ function parseMarkdown(md) {
     .replace(/^### (.*$)/gim, '<h3 style="color:#fff; font-size:1.2rem; margin:24px 0 12px; text-transform:uppercase; font-family:var(--font-header);"># $1</h3>')
     .replace(/^## (.*$)/gim, '<h2 style="color:#fff; font-size:1.4rem; margin:32px 0 16px; text-transform:uppercase; font-family:var(--font-header);">## $1</h2>')
     .replace(/^# (.*$)/gim, '<h1 style="color:#fff; font-size:1.6rem; margin:36px 0 20px; text-transform:uppercase; font-family:var(--font-header);">### $1</h1>')
-    .replace(/\*\*(.*)\*\*/gim, '<strong style="color:var(--accent); font-family:var(--font-header);">$1</strong>')
-    .replace(/\*(.*)\*/gim, '<em>$1</em>')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" style="color:var(--accent-secondary); font-weight:700;">$1</a>')
+    .replace(/\\*\\*(.*)\\*\\*/gim, '<strong style="color:var(--accent); font-family:var(--font-header);">$1</strong>')
+    .replace(/\\*(.*)\\*/gim, '<em>$1</em>')
+    .replace(/\\(([^\\)]+)\\)\\\\(([^\\)]+)\\)/gim, '<a href="$4" style="color:var(--accent-secondary); font-weight:700;">$2</a>')
     .replace(/^- (.*$)/gim, '<li style="margin-left:20px; margin-bottom:8px; font-family:var(--font-header);">* $1</li>')
-    .split('\n').map(line => {
+    .split('\\n').map(line => {
       const trimmed = line.trim();
       if (!trimmed) return '';
-      if (trimmed.startsWith('<h') || trimmed.startsWith('<ul') || trimmed.startsWith('<li') || trimmed.startsWith('<ol') || trimmed.startsWith('\\[') || trimmed.startsWith('$$')) return line;
+      if (trimmed.startsWith('<h') || trimmed.startsWith('<ul') || trimmed.startsWith('<li') || trimmed.startsWith('<ol') || trimmed.startsWith('\\\\[')) return line;
       return `<p style="margin-bottom:16px;">${line}</p>`;
-    }).join('\n');
+    }).join('\\n');
 }
 
 // Trigger initial route match
