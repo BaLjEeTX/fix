@@ -46,7 +46,7 @@ body {
     radial-gradient(circle at 85% 80%, rgba(27, 67, 224, 0.07) 0%, transparent 45%),
     radial-gradient(circle at 50% 50%, rgba(255, 208, 0, 0.03) 0%, transparent 35%);
   background-attachment: fixed;
-  transition: var(--transition);
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Custom Scrollbar */
@@ -248,6 +248,21 @@ a {
   box-shadow: 4px 4px 0 var(--text-primary);
 }
 
+.btn-deconstruct {
+  border-color: var(--accent-yellow) !important;
+  color: var(--accent-yellow) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.btn-deconstruct:hover {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-color: var(--accent) !important;
+  transform: translate(-3px, -3px) !important;
+  box-shadow: 4px 4px 0 var(--text-primary) !important;
+}
+
 /* Museum Placard Style Labels */
 .museum-label {
   border: 1.5px solid var(--text-primary);
@@ -281,9 +296,16 @@ a {
   border: 2px solid var(--text-primary);
   border-radius: var(--border-radius);
   position: relative;
-  transition: var(--transition);
+  z-index: 1; /* Establish stacking context for offset outline borders */
   overflow: visible;
   padding: 40px 32px;
+
+  /* Custom property transform system to prevent layout snapping on hover */
+  --card-rotate: var(--card-rotate-base, 0deg);
+  --card-translate-x: 0px;
+  --card-translate-y: var(--card-translate-y-base, 0px);
+  transform: rotate(var(--card-rotate)) translate(var(--card-translate-x), var(--card-translate-y));
+  transition: var(--transition);
 }
 
 .collage-card::before {
@@ -301,7 +323,9 @@ a {
 }
 
 .collage-card:hover {
-  transform: translate(-4px, -4px);
+  --card-translate-x: -4px;
+  --card-translate-y: calc(var(--card-translate-y-base, 0px) - 4px);
+  --card-rotate: calc(var(--card-rotate-base, 0deg) + 0.5deg);
   border-color: var(--accent);
 }
 
@@ -548,11 +572,13 @@ a {
 }
 
 .service-card:nth-child(even) {
-  transform: rotate(1deg) translateY(12px);
+  --card-rotate-base: 1deg;
+  --card-translate-y-base: 12px;
 }
 
 .service-card:nth-child(odd) {
-  transform: rotate(-0.8deg) translateY(-8px);
+  --card-rotate-base: -0.8deg;
+  --card-translate-y-base: -8px;
 }
 
 .service-icon {
@@ -665,11 +691,11 @@ a {
 }
 
 .stat-item:nth-child(even) {
-  transform: rotate(-1.2deg);
+  --card-rotate-base: -1.2deg;
 }
 
 .stat-item:nth-child(odd) {
-  transform: rotate(1.5deg);
+  --card-rotate-base: 1.5deg;
 }
 
 .stat-num {
@@ -970,11 +996,11 @@ textarea.form-control {
 }
 
 .career-card:nth-child(even) {
-  transform: rotate(-1deg);
+  --card-rotate-base: -1deg;
 }
 
 .career-card:nth-child(odd) {
-  transform: rotate(0.8deg);
+  --card-rotate-base: 0.8deg;
 }
 
 .career-dept {

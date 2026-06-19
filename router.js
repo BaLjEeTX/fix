@@ -86,7 +86,7 @@ function renderNavbar() {
         </div>
 
         <div style="display: flex; gap: 16px; align-items: center;">
-          <button id="deconstruct-toggle-btn" class="nav-cta" style="border-color: var(--accent-yellow); color: var(--accent-yellow); background: transparent; box-shadow: none; font-size: 0.7rem; padding: 8px 16px;">Deconstruct Canvas</button>
+          <button id="deconstruct-toggle-btn" class="nav-cta btn-deconstruct" style="font-size: 0.7rem; padding: 8px 16px;">Deconstruct Canvas</button>
           ${auth 
             ? `
               <a href="/profile" class="nav-link ${path === '/profile' ? 'active' : ''}" style="font-size:0.8rem; font-weight: 800;">Profile</a>
@@ -108,9 +108,15 @@ function renderNavbar() {
     const updateBtnStyle = () => {
       const isDeconstructed = document.body.classList.contains('state-deconstructed');
       deconstructBtn.textContent = isDeconstructed ? 'Reconstruct Canvas' : 'Deconstruct Canvas';
-      deconstructBtn.style.background = isDeconstructed ? 'var(--accent)' : 'transparent';
-      deconstructBtn.style.color = isDeconstructed ? '#fff' : 'var(--accent-yellow)';
-      deconstructBtn.style.borderColor = isDeconstructed ? 'var(--accent)' : 'var(--accent-yellow)';
+      if (isDeconstructed) {
+        deconstructBtn.style.background = 'var(--accent)';
+        deconstructBtn.style.color = '#fff';
+        deconstructBtn.style.borderColor = 'var(--accent)';
+      } else {
+        deconstructBtn.style.background = '';
+        deconstructBtn.style.color = '';
+        deconstructBtn.style.borderColor = '';
+      }
     };
 
     deconstructBtn.onclick = () => {
