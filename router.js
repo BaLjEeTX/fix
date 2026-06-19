@@ -199,7 +199,7 @@ export function handleRouting() {
 
 // Decorative Cubist Sketch SVGs
 function getCarSketchSVG() {
-  return \`
+  return `
     <svg viewBox="0 0 500 240" class="sketch-svg" xmlns="http://www.w3.org/2000/svg">
       <!-- Geometric Color Blocks -->
       <polygon points="40,20 160,10 140,90 20,80" fill="var(--accent-secondary)" opacity="0.15"/>
@@ -246,11 +246,11 @@ function getCarSketchSVG() {
       <path d="M 15 130 Q 35 125 55 132" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
       <path d="M 5 150 Q 20 148 35 152" fill="none" stroke="var(--accent-secondary)" stroke-width="2" stroke-linecap="round"/>
     </svg>
-  \`;
+  `;
 }
 
 function getSmallCarSVG() {
-  return \`
+  return `
     <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
       <path d="M 10 70 C 30 65, 45 68, 50 70 C 60 70, 70 55, 80 50 C 100 40, 140 40, 150 45 C 160 48, 170 40, 185 42 L 190 70 Z" 
             fill="none" stroke="var(--text-paper)" stroke-width="2" stroke-linejoin="round"/>
@@ -258,7 +258,7 @@ function getSmallCarSVG() {
       <circle cx="160" cy="70" r="15" fill="none" stroke="var(--text-paper)" stroke-width="2"/>
       <line x1="10" y1="50" x2="40" y2="50" stroke="var(--accent)" stroke-width="1.5"/>
     </svg>
-  \`;
+  `;
 }
 
 // ============================================================
@@ -1821,16 +1821,16 @@ function parseMarkdown(md) {
     .replace(/^### (.*$)/gim, '<h3 style="color:#fff; font-size:1.2rem; margin:24px 0 12px; text-transform:uppercase; font-family:var(--font-header);"># $1</h3>')
     .replace(/^## (.*$)/gim, '<h2 style="color:#fff; font-size:1.4rem; margin:32px 0 16px; text-transform:uppercase; font-family:var(--font-header);">## $1</h2>')
     .replace(/^# (.*$)/gim, '<h1 style="color:#fff; font-size:1.6rem; margin:36px 0 20px; text-transform:uppercase; font-family:var(--font-header);">### $1</h1>')
-    .replace(/\\*\\*(.*)\\*\\*/gim, '<strong style="color:var(--accent); font-family:var(--font-header);">$1</strong>')
-    .replace(/\\*(.*)\\*/gim, '<em>$1</em>')
-    .replace(/\\(([^\\)]+)\\)\\\\(([^\\)]+)\\)/gim, '<a href="$4" style="color:var(--accent-secondary); font-weight:700;">$2</a>')
+    .replace(/\*\*(.*)\*\*/gim, '<strong style="color:var(--accent); font-family:var(--font-header);">$1</strong>')
+    .replace(/\*(.*)\*/gim, '<em>$1</em>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" style="color:var(--accent-secondary); font-weight:700;">$1</a>')
     .replace(/^- (.*$)/gim, '<li style="margin-left:20px; margin-bottom:8px; font-family:var(--font-header);">* $1</li>')
-    .split('\\n').map(line => {
+    .split('\n').map(line => {
       const trimmed = line.trim();
       if (!trimmed) return '';
-      if (trimmed.startsWith('<h') || trimmed.startsWith('<ul') || trimmed.startsWith('<li') || trimmed.startsWith('<ol') || trimmed.startsWith('\\\\[')) return line;
+      if (trimmed.startsWith('<h') || trimmed.startsWith('<ul') || trimmed.startsWith('<li') || trimmed.startsWith('<ol') || trimmed.startsWith('\\[') || trimmed.startsWith('$$')) return line;
       return `<p style="margin-bottom:16px;">${line}</p>`;
-    }).join('\\n');
+    }).join('\n');
 }
 
 // Trigger initial route match
